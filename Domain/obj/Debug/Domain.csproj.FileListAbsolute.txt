@@ -1,0 +1,8 @@
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Debug\Domain.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Debug\Domain.pdb
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Debug\Ninject.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Debug\Ninject.pdb
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Debug\Ninject.xml
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Debug\Domain.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Debug\Domain.pdb
