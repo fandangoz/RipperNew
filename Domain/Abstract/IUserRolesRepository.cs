@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using Domain.Entities;
 namespace Domain.Abstract
 {
-    interface IUserRolesRepository
+    public interface IUserRolesRepository
     {
         IQueryable<UserRole> UsersRoles { get; }
+        void Add(UserRole userRole);
     }
 }

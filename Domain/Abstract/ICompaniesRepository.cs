@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 namespace Domain.Abstract
 {
-    interface ICompaniesRepository
+    public interface ICompaniesRepository
     {
         IQueryable<Company> Companies { get; }
     }

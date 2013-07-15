@@ -2,7 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject;
-
+using Domain.Abstract;
+using Domain.Concrete;
 namespace WebUI.Infrastructure
 {
     //ninjectControllerFactory will be use to create controllers
@@ -22,7 +23,8 @@ namespace WebUI.Infrastructure
 
         private void AddBindings()
         {
-            //binding place
+            ninjectKernel.Bind<IUserRepository>().To<EFUserRepository>();
+            ninjectKernel.Bind<IUserRolesRepository>().To<EFUserRoleRepository>();
         }
     }
 }

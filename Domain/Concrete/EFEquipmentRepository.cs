@@ -8,7 +8,7 @@ using Domain.Entities;
 
 namespace Domain.Concrete
 {
-    class EFEquipmentRepository :IEquipmentTypesRepository
+    public class EFEquipmentRepository :IEquipmentTypesRepository
     {
         private EFDbContext context = new EFDbContext();
         public IQueryable<EquipmentType> EquipmentTypes

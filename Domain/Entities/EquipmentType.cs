@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 namespace Domain.Entities
 {
-    class EquipmentType
+    public class EquipmentType
     {
         [Key]
-        public int EquipmentTypeId { set; get; }
+        public int EquipmentTypeID { set; get; }
         [Required(ErrorMessage = "pole - nazwa typ sprzętu nie może być puste")]
         [StringLength(30, MinimumLength = 3, ErrorMessage = "pole - typ sprzętu musi zawierać od 3 do 30 znaków")]
         [Display(Name = "Nazwa kategorii: ")]

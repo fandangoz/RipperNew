@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 namespace Domain.Entities
 {
-    class OrderStatus
+    public class OrderStatus
     {
         [Key]
         public int OrderStatusID { get; set; }

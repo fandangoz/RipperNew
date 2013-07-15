@@ -8,7 +8,7 @@ using Domain.Entities;
 
 namespace Domain.Concrete
 {
-    class EFCompanyRepository : ICompaniesRepository
+    public class EFCompanyRepository : ICompaniesRepository
     {
         private EFDbContext context = new EFDbContext();
         public IQueryable<Company> Companies

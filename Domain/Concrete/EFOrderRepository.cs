@@ -8,7 +8,7 @@ using Domain.Entities;
 
 namespace Domain.Concrete
 {
-    class EFOrderRepository : IOrdersRepository
+    public class EFOrderRepository : IOrdersRepository
     {
         private EFDbContext context = new EFDbContext();
         public IQueryable<Order> Orders 

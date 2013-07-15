@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    class Company
+    public class Company
     {
         //TODO company and user 1 account or more?
         [Key]

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 namespace Domain.Abstract
 {
-    interface IOrderStatusesRepository
+    public interface IOrderStatusesRepository
     {
         IQueryable<OrderStatus> OrderStatuses { get; }
     }

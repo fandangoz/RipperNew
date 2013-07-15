@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 namespace Domain.Abstract
 {
-    interface IEquipmentTypesRepository
+    public interface IEquipmentTypesRepository
     {
         IQueryable<EquipmentType> EquipmentTypes { get; }
     }

@@ -4,19 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 namespace Domain.Entities
 {
-    class User
+
+    public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public int UserID { get; set; }
         [Required]
         public virtual UserRole UserRole { set; get; }
         public virtual Company Company { set; get; } 
-        [Required]
-        [StringLength(30,MinimumLength=3, ErrorMessage = "pole - nazwa użytkownika musi zawierać od 3 do 30 znaków")]
+        [Required(ErrorMessage="pole - nazwa użytkownika jest wymagane")]
+        [StringLength(30,MinimumLength=4, ErrorMessage = "pole - nazwa użytkownika musi zawierać od 4 do 30 znaków")]
         public string Login { set; get; }
-        [Required]
+        [Required(ErrorMessage="Pole hasło jest wymagane")]
         [MinLength(6,ErrorMessage="Hasło musi posiadać co najmniej 6 znaków")]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło: ")]
@@ -33,5 +35,6 @@ namespace Domain.Entities
         [DataType(DataType.MultilineText)]
         [Display(Name = "Dodatkowe informacje: ")]
         public string additionalInformation { set; get; }
+
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 namespace Domain.Entities
 {
-    class Order
+    public class Order
     {
         [Key]
-        public int OrderId { get; set; }
+        public int OrderID { get; set; }
         [Required]
         [Display(Name = "Nazwa klienta: ")]
         public virtual User Customer { set; get; }

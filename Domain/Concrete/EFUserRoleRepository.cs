@@ -7,12 +7,17 @@ using Domain.Abstract;
 using Domain.Entities;
 namespace Domain.Concrete
 {
-    class EFUserRoleRepository :IUserRolesRepository
+    public class EFUserRoleRepository : IUserRolesRepository
     {
         private EFDbContext context = new EFDbContext();
         public IQueryable<UserRole> UsersRoles  
         {
-            get { return context.UsersRoles; }
+            get { return context.UserRoles; }
+        }
+        public void Add(UserRole userRole)
+        {
+            context.UserRoles.Add(userRole);
+            context.SaveChanges();
         }
 
     }

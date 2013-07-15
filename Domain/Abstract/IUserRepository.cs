@@ -7,8 +7,9 @@ using Domain.Entities;
 
 namespace Domain.Abstract
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         IQueryable<User> Users { get; }
+        void SaveUser(User user);
     }
 }

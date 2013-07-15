@@ -8,3 +8,6 @@ C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Debug
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Debug\Domain.pdb
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Debug\EntityFramework.dll
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Debug\EntityFramework.xml
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Debug\SimpleCrypto.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Debug\Domain.Migrations.InitialCreate.resources
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Debug\Domain.csproj.GenerateResource.Cache

@@ -7,10 +7,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    class UserRole
+    public class UserRole
     {
         [Key]
-        public int UserRoleId { set; get; }
+        public int UserRoleID { set; get; }
         [Required(ErrorMessage = "pole - nazwa roli nie może być puste")]
         [StringLength(30,MinimumLength=3,ErrorMessage="nazwa roli musi zawierać od 3 do 30 znaków")]
         [Display(Name = "Nazwa roli: ")]

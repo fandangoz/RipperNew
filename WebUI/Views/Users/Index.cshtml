@@ -1,0 +1,11 @@
+﻿@model IQueryable<Domain.Entities.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@foreach(var user in Model)
+{
+    <p>@user.Name</p>
+}
