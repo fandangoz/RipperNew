@@ -1,0 +1,31 @@
+﻿@model WebUI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "LogIn";
+}
+
+<h2>LogIn</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>LoginViewModel</legend>
+        @Html.LabelFor(X => X.Login)
+        @Html.EditorFor(x => x.Login)
+        @Html.LabelFor(x=>x.Password)
+        @Html.EditorFor(x => x.Password)
+        <p>
+            <input type="submit" value="LogIn" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

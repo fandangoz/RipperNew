@@ -14,5 +14,6 @@ namespace WebUI.Models
         [Display(Name = "Potwierdz hasło: ")]
         public string passwordConfirmation { set; get; }
         public string Password { get { return user.Password; } }
+        public string CompanyName { set; get; }
     }
 }

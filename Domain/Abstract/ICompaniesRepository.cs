@@ -9,5 +9,7 @@ namespace Domain.Abstract
     public interface ICompaniesRepository
     {
         IQueryable<Company> Companies { get; }
+        void SaveCompany(Company company);
     }
+
 }

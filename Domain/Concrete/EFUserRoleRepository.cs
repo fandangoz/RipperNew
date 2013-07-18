@@ -20,5 +20,6 @@ namespace Domain.Concrete
             context.SaveChanges();
         }
 
+
     }
 }

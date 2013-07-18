@@ -18,13 +18,19 @@ namespace Domain.Concrete
         }
         public void SaveUser(User user)
         {
-            //TO DO reference to company
+            User dbUser = context.Users.FirstOrDefault(u => u.UserID == user.UserID);
+            if (context.Users.FirstOrDefault(u => u.Login == user.Login) != null)
+            {
+                throw (new UserExistInDatabaseException("Podany login jest zajety"));
+            }
+            user.UserRole = context.UserRoles.FirstOrDefault(uR => uR.UserRoleID == user.UserRole.UserRoleID);
+            if (user.Company != null)
+            {
+                user.Company = context.Companies.FirstOrDefault(c => c.CompanyID == user.Company.CompanyID);
+            }
+
             if (user.UserID == 0)
             {
-                if(context.Users.FirstOrDefault(u => u.Login == user.Login) != null)
-                {
-                    throw ( new UserExistInDatabaseException("Podany login jest zajety"));
-                }
                 var crypto = new SimpleCrypto.PBKDF2();
                 var encryptPass = crypto.Compute(user.Password);
                 user.Password = encryptPass;
@@ -33,7 +39,7 @@ namespace Domain.Concrete
             }
             else
             {
-                User dbUser = context.Users.FirstOrDefault(u => u.UserID == user.UserID);
+
                 dbUser.Name = user.Name;
                 dbUser.Phone = user.Phone;
                 dbUser.Surname = user.Surname;
@@ -44,8 +50,14 @@ namespace Domain.Concrete
             context.SaveChanges();
         }
 
-        public void ChangeUserPassword(string userLogin, string newPassword, string oldPassword)
+        public void ChangeUserPassword(User user, string newPassword)
         {
+                var crypto = new SimpleCrypto.PBKDF2();
+                var encryptPass = crypto.Compute(newPassword);
+                user.Password = encryptPass;
+                user.PasswordSalt = crypto.Salt;
+                user.UserRole = user.UserRole;
+                context.SaveChanges();
 
         }
 

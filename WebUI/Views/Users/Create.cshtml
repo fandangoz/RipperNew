@@ -1,13 +1,50 @@
 ﻿@model WebUI.Models.UserViewModel
-
 @{
+
     ViewBag.Title = "Create";
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CompanyName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Company/AutoCompleteCompanyName",
+                    type: "GET",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CompanyName, value: item.CompanyName };
+                        }))
 
-@using(@Html.BeginForm())
-{
-    @Html.ValidationSummary(true);
-    <fieldset>
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+
+    $(document).ready(function () {
+        $("#companyFieldToggle").click(function(){
+            $("#CompanyForm").fadeToggle();
+            $("#CompanyAddOutput").hide();
+            $("#CompanyAddOutput").text("");
+        })
+    })
+    function onSuccess(data) {
+        $("#CompanyAddOutput").show();
+        $("#CompanyAddOutput").text(data);
+    }
+    
+</script>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+<fieldset>
+        
         <legend>Podaj swoje dane</legend>
         <p>Dane obowiązkowe: </p>   
             @Html.ValidationMessageFor(x => x.user.Login)
@@ -30,6 +67,21 @@
             @Html.EditorFor(x => x.user.Address)
            @Html.LabelFor(x => x.user.additionalInformation)
             @Html.EditorFor(x => x.user.additionalInformation)
+            @Html.LabelFor(x => x.CompanyName)
+            @Html.EditorFor(x => x.CompanyName);
         <input type="submit" , value="Zatwierdz" />
     </fieldset>
 }
+<p>
+<button id="companyFieldToggle" value="Dodaj firmę">Dodaj firmę</button>
+    </p>
+<div >
+    <label id="CompanyAddOutput"></label>
+</div>
+
+<div id ="CompanyForm" hidden="hidden">
+@using (Ajax.BeginForm("_AddNewCompany", "Company", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "onSuccess" }))
+{
+    { Html.RenderPartial("_AddNewCompany", new Company()); }
+}
+</div>

@@ -7,5 +7,6 @@
 <h2>Index</h2>
 @foreach(var user in Model)
 {
-    <p>@user.Name</p>
+    <p>@user.Login</p>
+    <p>@user.UserRole.UserRoleID</p>
 }

@@ -1,0 +1,32 @@
+﻿@model List<Company>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Companies Index</h2>
+
+<table>
+    <tr>
+        <td> ID:</td>
+        <td>Nazwa firmy: </td>
+        <td>Adres firmy: </td>
+        <td>Regon: </td>
+        <td>Dodatkowe informacje: </td>
+        <td></td>
+
+    </tr>
+@foreach (Company c in Model)
+{
+    <tr>
+        <td>@c.CompanyID</td>
+        <td>@c.CompanyName</td>
+        <td>@c.CompanyAddress</td>
+        <td>@c.CompanyRegon</td>
+        <td>@c.AdditionalData</td>
+        <td>@Html.ActionLink("Edytuj","Edit",new { id = c.CompanyID})</td>
+    </tr>
+}
+</table>
+
+<p>@Html.ActionLink("Dodaj nową" , "Create")</p>

@@ -1,0 +1,45 @@
+﻿@model Domain.Entities.Company
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Company</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyName)
+            @Html.ValidationMessageFor(model => model.CompanyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyAddress)
+            @Html.ValidationMessageFor(model => model.CompanyAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyRegon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyRegon)
+            @Html.ValidationMessageFor(model => model.CompanyRegon)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdditionalData)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdditionalData)
+            @Html.ValidationMessageFor(model => model.AdditionalData)
+        </div>
+            
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+

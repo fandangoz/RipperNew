@@ -11,5 +11,6 @@ namespace Domain.Abstract
     {
         IQueryable<User> Users { get; }
         void SaveUser(User user);
+        void ChangeUserPassword(User user, string newPassword);
     }
 }

@@ -14,37 +14,68 @@ namespace WebUI.Controllers
     {
         private IUserRepository repo;
         private IUserRolesRepository userRolesRepo;
-        public UsersController(IUserRepository repository, IUserRolesRepository userRolesRepository)
+        private ICompaniesRepository companiesRepo;
+        public UsersController(IUserRepository repository, IUserRolesRepository userRolesRepository, ICompaniesRepository compRepo)
         {
             this.repo = repository;
             this.userRolesRepo = userRolesRepository;
+            this.companiesRepo = compRepo;
         }
         //
         // GET: /Users/
 
         public ActionResult Index()
         {
-            List<User> users = repo.Users.ToList();
-            return View();
+            return View(repo.Users);
         }
 
-        public ActionResult Create()
+        public ActionResult Create() 
         {
             
             
             return View();
         }
         [HttpPost]
-        public ActionResult Create(UserViewModel userViewModel, User user, UserRole uR)
+        public ActionResult Create(UserViewModel userViewModel)
         {
-
-            userViewModel.user.UserRole = new EFUserRoleRepository().UsersRoles.FirstOrDefault(u => u.RoleName == "Customer");
+            userViewModel.user.UserRole = userRolesRepo.UsersRoles.FirstOrDefault(u => u.UserRoleID == 2);
             if (userViewModel.user.UserRole != null)
             {
-                ModelState["RoleName"].Errors.Clear();
-                 ModelState["user.UserRole"].Errors.Clear();
-                
+                 ModelState["user.UserRole"].Errors.Clear();               
             }
+            if (userViewModel.CompanyName != null)
+            {
+                Company userCompany = companiesRepo.Companies.FirstOrDefault(c => c.CompanyName == userViewModel.CompanyName);
+                if (userCompany == null)
+                {
+                    ModelState.AddModelError("", "Nie znaleziono podanej firmy w bazie danych popraw nazwę firmy lub dodaj ją do bazy danych");
+                }
+                userViewModel.user.Company = companiesRepo.Companies.FirstOrDefault(c => c.CompanyName == userViewModel.CompanyName);
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    repo.SaveUser(userViewModel.user);
+                }
+                catch (UserExistInDatabaseException ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+                if (ModelState.IsValid)
+                {
+                    return RedirectToAction("Index","Users");
+                }
+            }
+            return View(userViewModel);
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+        public ActionResult Edit(UserViewModel userViewModel)
+        {
             if (ModelState.IsValid)
             {
                 try
@@ -61,11 +92,6 @@ namespace WebUI.Controllers
                 }
             }
             return View(userViewModel);
-        }
-
-        public ActionResult Edit()
-        {
-            return View();
         }
 
     }

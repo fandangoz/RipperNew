@@ -19,7 +19,6 @@ namespace Domain.Entities
         [StringLength(30,MinimumLength=4, ErrorMessage = "pole - nazwa użytkownika musi zawierać od 4 do 30 znaków")]
         public string Login { set; get; }
         [Required(ErrorMessage="Pole hasło jest wymagane")]
-        [MinLength(6,ErrorMessage="Hasło musi posiadać co najmniej 6 znaków")]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło: ")]
         public string Password { get; set; }
