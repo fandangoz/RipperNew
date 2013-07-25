@@ -2,29 +2,44 @@
 @{
 
     ViewBag.Title = "Create";
+
+    
 }
+
 <script type="text/javascript">
+
     $(document).ready(function () {
         $("#CompanyName").autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "/Company/AutoCompleteCompanyName",
+                    url: "/Company/AutoCompleteClientName",
                     type: "GET",
                     dataType: "json",
                     data: { term: request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.CompanyName, value: item.CompanyName };
+                            return { label: item.CompanyName, value: item.CompanyName, };
+
                         }))
 
                     }
-                })
+                });
             },
             messages: {
                 noResults: "", results: ""
-            }
+            },
+            select: function(event, ui) {
+                //close the drop down
+            this.close
+            },
+
+        open: function() {
+            $('.ui-autocomplete').css({'list-style': 'none', 'background-color':'white'});
+        },
+
         });
-    })
+
+    });
 
     $(document).ready(function () {
         $("#companyFieldToggle").click(function(){
@@ -38,6 +53,13 @@
         $("#CompanyAddOutput").text(data);
     }
     
+    $(document).ready(function (){
+        $("#CreatePasswordAutomatically").click (function()
+        {
+                $("#user_Password").val($("#user_Login").val().toString());
+                $("#passwordConfirmation").val($("#user_Login").val().toString());
+        })
+    })
 </script>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -56,6 +78,7 @@
             @Html.ValidationMessageFor(x => x.passwordConfirmation)
             @Html.LabelFor(x => x.passwordConfirmation)
             @Html.EditorFor(x => x.passwordConfirmation)
+            
             <p>Dane dodatkowe: </p>
             @Html.LabelFor(x => x.user.Phone)
             @Html.EditorFor(x => x.user.Phone)
@@ -72,6 +95,7 @@
         <input type="submit" , value="Zatwierdz" />
     </fieldset>
 }
+<button id="CreatePasswordAutomatically"> Skopiuj login jako hasło </button>
 <p>
 <button id="companyFieldToggle" value="Dodaj firmę">Dodaj firmę</button>
     </p>

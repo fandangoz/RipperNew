@@ -1,0 +1,22 @@
+﻿@model Domain.Entities.EquipmentType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>EquipmentType</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentTypeName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EquipmentTypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

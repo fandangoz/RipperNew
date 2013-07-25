@@ -1,0 +1,107 @@
+﻿@model WebUI.Helpers.PagedData<Order>
+<script >
+    $().ready(function () {
+        $(".page-number").on("click", function () {
+ 
+            var page = parseInt($(this).html());
+ 
+            $.ajax({
+                url: '@Url.Action("OrdersList")',
+                data: { "page": page },
+                success: function (data) {
+                    $("#users-list").html(data);
+                }
+            });
+        });
+    });
+
+</script>
+
+@if(Model.Data != null && Model.Data.Count() > 0)
+{
+<table>
+    <thead>
+    <tr>
+        <th>ID:</th>
+        <th>
+            Nazwa użytkownika
+        </th>
+        <th id="changingName">Imię i nazwisko</th>
+        <th>
+            Data przyjęcia
+        </th>
+        <th> Data zakończenia</th>
+        <th>
+            Dodatkowe informacje
+        </th>
+        <th>Status</th>
+        <th>Typ sprzętu</th>
+    </tr>
+</thead>
+    <tbody>
+@foreach (var item in Model.Data) {
+    <tr>
+        <td>@Html.ActionLink(item.OrderID.ToString(),"Details","Orders", new {id = item.OrderID} , null )</td>
+        @if(item.Company != null)
+        {
+            <td>@Html.DisplayFor(modelItem => item.Company.CompanyName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Company.CompanyRegon)</td>
+        }
+        else
+        {
+            <td>@Html.DisplayFor(modelItem => item.Customer.Login)</td>
+           
+            <td>
+                @if (item.Customer.FullName().Length > 0)
+                {
+                    Html.Display(item.Customer.FullName());
+                }
+                else
+                {
+                    @:brak
+                }
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.receivingDate)
+        </td>
+        <td>
+            @if(item.endNote != null)
+            {
+                Html.DisplayFor(modelItem => item.endDate);
+            }
+            else
+            {
+                @:brak
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.additionalInformation)
+        </td>
+            <td>@Html.DisplayFor(modelItem => item.OrderStatus.OrderStatusName)</td>
+            <td>@Html.DisplayFor(modelItem => item.EquipmentType.EquipmentTypeName)</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
+        </td>
+    </tr>
+}
+</tbody>
+    <tfoot>
+        <tr>
+            <td colspan ="3">
+                @for(int i = 1 ; i <= Model.NumberOfPages; i++)
+                {
+                    <a href="#" class="page-number">@i</a>
+                }
+            </td>
+        </tr>
+
+    </tfoot>
+</table>
+}
+else
+{
+    @:Brak zleceń
+}

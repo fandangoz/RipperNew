@@ -9,5 +9,7 @@ namespace Domain.Abstract
     public interface IEquipmentTypesRepository
     {
         IQueryable<EquipmentType> EquipmentTypes { get; }
+        void saveEquipment(EquipmentType eqType);
+        void editEQType(EquipmentType eqType);
     }
 }

@@ -23,7 +23,7 @@ namespace WebUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            ModelBinders.Binders.Add(typeof(DateTime?), new MyDateTimeModelBinder());
             //My settings
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
 

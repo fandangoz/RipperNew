@@ -1,0 +1,52 @@
+﻿@model WebUI.Models.OrdersIndexModelView
+
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    $().ready(function () {
+        $("#NameSzukaj").keyup(ajaxOrderFilter)
+    });
+    $().ready(function () {
+        $("#selectedStatus").change(ajaxOrderFilter)
+    });
+    $().ready(function () {
+        $('input[name=group1]').change(ajaxOrderFilter)
+    });
+    var ajaxOrderFilter = function () {
+            var isCompany = $('input:radio[name=group1]:checked').val()
+            var name = $("#NameSzukaj").val();
+            var selectedStatus = $("#selectedStatus").val();
+        $.ajax({
+            url: '@Url.Action("OrdersList")',
+            data: {
+                isCompany: isCompany == "Klient" ? false : true,
+                name: name == null ? "" : name,
+                selectedStatus: selectedStatus
+            },
+            success: function (data) {
+                $("#orders-list").html(data);
+            }
+        })
+     }
+    </script>
+<div>
+@Html.DropDownListFor(m => m.selectedStatus,Model.ordersStatusesList)
+    </div>
+<div>
+<input type="radio" name="group1" value="Klient" checked> Klient prywatny<br/>
+<input type="radio" name="group1" value="Firma" > Firma <br />
+    </div>
+ <p>Login: @Html.TextBox("NameSzukaj")</p>
+
+<div id ="orders-list">
+    @Html.Action("OrdersList")
+</div>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+

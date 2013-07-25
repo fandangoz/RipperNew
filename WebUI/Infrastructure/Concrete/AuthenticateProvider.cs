@@ -22,7 +22,7 @@ namespace WebUI.Infrastructure.Concrete
 
         public bool LogIn(LoginViewModel logInVM)
         {
-            User user = IsValid(logInVM.Login,logInVM.Password);
+            User user = repo.IsValid(logInVM.Login,logInVM.Password);
             
             if(user != null)
             {
@@ -40,27 +40,13 @@ namespace WebUI.Infrastructure.Concrete
         public bool ChangePassword(PasswordChangeViewModel passwordVM)
         {
             string username = HttpContext.Current.User.Identity.Name;
-            User user = IsValid(username, passwordVM.OldPassword);
-            if (user != null )
+            if (repo.ChangeUserPassword(username, passwordVM.OldPassword, passwordVM.NewPassword) != null)
             {
-                repo.ChangeUserPassword(user, passwordVM.NewPassword);
                 return true;
             }
             return false;
         }
 
-        private User IsValid(string login, string password)
-        {
-            var crypto = new SimpleCrypto.PBKDF2();
-            User user = repo.Users.FirstOrDefault(u => u.Login == login);
-            if (user != null)
-            {
-                if (user.Password == crypto.Compute(password, user.PasswordSalt))
-                {
-                    return user;
-                }
-            }
-            return null;
-        }
+
     }
 }

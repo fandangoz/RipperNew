@@ -1,0 +1,110 @@
+﻿@model WebUI.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CompanyName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Company/AutoCompleteCompanyName",
+                    type: "GET",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.CompanyName, value: item.CompanyName };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+    </script>
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>User</legend>
+
+        @Html.HiddenFor(model => model.user.UserID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user.Login)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.user.Login)
+            @Html.ValidationMessageFor(model => model.user.Login)
+        </div>
+
+            @Html.HiddenFor(model => model.user.Password)
+
+
+            @Html.HiddenFor(model => model.user.PasswordSalt)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.user.Name)
+            @Html.ValidationMessageFor(model => model.user.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user.Surname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.user.Surname)
+            @Html.ValidationMessageFor(model => model.user.Surname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.user.Address)
+            @Html.ValidationMessageFor(model => model.user.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user.Phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.user.Phone)
+            @Html.ValidationMessageFor(model => model.user.Phone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user.additionalInformation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.user.additionalInformation)
+            @Html.ValidationMessageFor(model => model.user.additionalInformation)
+        </div>
+
+            @Html.LabelFor(x => x.CompanyName)
+            @Html.EditorFor(x => x.CompanyName)
+            @Html.LabelFor(x => x.user.isActive)
+             @Html.EditorFor(x => x.user.isActive)
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Szczegóły", "Details", new { id = Model.user.UserID })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

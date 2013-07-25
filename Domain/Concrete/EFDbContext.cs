@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Domain.Abstract;
 namespace Domain.Concrete
 {
     public class EFDbContext : DbContext
@@ -11,6 +12,8 @@ namespace Domain.Concrete
         public DbSet<OrderStatus> OrderStatuses { set; get; }
         public DbSet<User> Users { set; get; }
         public DbSet<UserRole> UserRoles { set; get; }
+        public DbSet<ReperairType> ReperairTypes { set; get; }
+        public DbSet<ReperairTypePrice> ReperairTypePrice { set; get; }
 
 
     }

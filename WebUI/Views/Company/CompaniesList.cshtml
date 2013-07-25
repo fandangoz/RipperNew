@@ -1,0 +1,56 @@
+﻿@model WebUI.Helpers.PagedData<Company>
+<script >
+    $().ready(function () {
+        $(".page-number").on("click", function () {
+ 
+            var page = parseInt($(this).html());
+ 
+            $.ajax({
+                url: '@Url.Action("CompaniesList")',
+                data: { "page": page },
+                success: function (data) {
+                    $("#companies-list").html(data);
+                }
+            });
+        });
+    });
+
+</script>
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+        <th>ID:</th>
+        <th>Nazwa firmy:</th>
+        <th>Adres firmy:</th>
+        <th>Dodatkowe informacje:</th>
+        <th>Numer Regon:</th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach(var company in Model.Data)
+{
+    <tr>
+        <td>@company.CompanyID</td>
+        <td>@company.CompanyName</td>
+        <td>@company.CompanyAddress</td>
+        <td>@company.AdditionalData</td>
+        <td>@company.CompanyRegon</td>
+        <td>@Html.ActionLink("Szczegóły", "Details", new {id =company.CompanyID})</td>
+    </tr>
+}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan ="3">
+                @for(int i = 1 ; i <= Model.NumberOfPages; i++)
+                {
+                    <a href="#" class="page-number">@i</a>
+                }
+            </td>
+        </tr>
+
+    </tfoot>
+</table>

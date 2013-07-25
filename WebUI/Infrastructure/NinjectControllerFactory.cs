@@ -30,6 +30,11 @@ namespace WebUI.Infrastructure
             ninjectKernel.Bind<IUserRolesRepository>().To<EFUserRoleRepository>();
             ninjectKernel.Bind<IAuthenticateProvider>().To<AuthenticateProvider>();
             ninjectKernel.Bind<ICompaniesRepository>().To<EFCompanyRepository>();
+            ninjectKernel.Bind<IEquipmentTypesRepository>().To<EFEquipmentRepository>();
+            ninjectKernel.Bind<IOrdersRepository>().To<EFOrderRepository>();
+            ninjectKernel.Bind<IReperairType>().To<EFReperairType>();
+            ninjectKernel.Bind<IReperairTypePrice>().To<EFReperairTypePrice>();
+            ninjectKernel.Bind<IOrderStatusesRepository>().To<EFOrderStatusesRepository>();
         }
     }
 }

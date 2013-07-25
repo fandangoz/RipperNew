@@ -14,7 +14,7 @@ namespace WebUI.Controllers
     public class AccountController : Controller
     {
         private IAuthenticateProvider Authentication;
-        public AccountController(AuthenticateProvider Auth)
+        public AccountController(IAuthenticateProvider Auth)
         {
             Authentication = Auth;
         }
@@ -26,7 +26,7 @@ namespace WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult LogIn(LoginViewModel logInVM, string stringUrl)
+        public ActionResult LogIn(LoginViewModel logInVM)
         {
             bool isAuthenticate = Authentication.LogIn(logInVM);
             if (isAuthenticate == false)
@@ -42,11 +42,6 @@ namespace WebUI.Controllers
         {
             Authentication.LogOut();
             return RedirectToAction("Index", "Home");
-        }
-        [Authorize(Roles = "Customer")]
-        public string Index()
-        {
-            return "sss";
         }
 
         [Authorize(Roles="Customer")]

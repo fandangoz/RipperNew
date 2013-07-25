@@ -9,5 +9,7 @@ namespace Domain.Abstract
     public interface IOrdersRepository
     {
         IQueryable<Order> Orders { get; }
+        void SaveOrder(Order order);
+        void EditOrder(Order order);
     }
 }

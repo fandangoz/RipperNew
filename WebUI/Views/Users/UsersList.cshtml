@@ -1,0 +1,64 @@
+﻿@model WebUI.Helpers.PagedData<User>
+<script >
+    $().ready(function () {
+        $(".page-number").on("click", function () {
+ 
+            var page = parseInt($(this).html());
+ 
+            $.ajax({
+                url: '@Url.Action("UsersList")',
+                data: { "page": page },
+                success: function (data) {
+                    $("#users-list").html(data);
+                }
+            });
+        });
+    });
+
+</script>
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th> Login</th>
+            <th></th>
+            <th>Imie</th>
+            <th>Numer telefonu</th>
+            <th>Adres</th>
+            <th>Dodatkowe informacje</th>
+
+            <th>Rola(usunac)</th>
+            <th>Poziom uprawnien:</th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach(var user in Model.Data)
+{
+    <tr>
+        <td>@user.Login</td>
+        <td>@user.Surname</td>
+        <td>@user.Name</td>
+        <td>@user.Phone</td>
+        <td>@user.Address</td>
+        <td>@user.additionalInformation</td>
+        <td>@user.UserRole.RoleName</td>
+        <td>@user.UserRole.UserRoleID</td> 
+        <td>@Html.ActionLink("Szczegóły", "Details" , new {id = user.UserID})</td>
+        <td>@Html.ActionLink("Zmień role", "ChangeRole", new{ id = user.UserID})</td>
+        </tr>
+}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan ="3">
+                @for(int i = 1 ; i <= Model.NumberOfPages; i++)
+                {
+                    <a href="#" class="page-number">@i</a>
+                }
+            </td>
+        </tr>
+
+    </tfoot>
+</table>

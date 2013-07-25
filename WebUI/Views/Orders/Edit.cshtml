@@ -1,0 +1,194 @@
+﻿@model WebUI.Models.OrderModelView
+
+@{
+    ViewBag.Title = "Edit";
+}
+<script>
+    $(document).ready(function () {
+        $(".EqType").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Orders/GerReperairTypes",
+                    type: "GET",
+                    data: { term: request.term },
+                    dataType: "json",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: this.label, value: item.Type };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            },
+            select: function (event, ui) {
+                //close the drop down
+                this.close
+            },
+
+            open: function () {
+                $('.ui-autocomplete').css({ 'list-style': 'none', 'background-color': 'white' });
+            },
+
+        });
+    });
+    $(document).ready(function () {
+        $("#Order_EquipmentType_EquipmentTypeName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Orders/GetEqupmentTypes",
+                    type: "GET",
+                    data: { term: request.term },
+                    dataType: "json",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: this.label, value: item.Type };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            },
+            select: function (event, ui) {
+                //close the drop down
+                this.close
+            },
+
+            open: function () {
+                $('.ui-autocomplete').css({ 'list-style': 'none', 'background-color': 'white' });
+            },
+
+        });
+    });
+</script>
+<h2>Edit</h2>
+        @if (Model.Order.Customer != null)
+        {
+            <div>
+            @Html.DisplayNameFor(m => m.Order.Customer.Login)</div>
+            <div>@Html.ActionLink(Model.Order.Customer.Login, "Details", "Users", new { id = Model.Order.Customer.UserID},null)</div>
+            <div>
+                Imię i nazwisko</div>
+            <div>
+            @if (Model.Order.Customer.FullName().Length > 0)
+            {
+                @Model.Order.Customer.FullName()
+            }
+            else
+            {
+                @:brak
+            }</div>
+            <div>@Html.DisplayNameFor(m => m.Order.Customer.Phone)</div>
+            <div>
+            @if(Model.Order.Customer.Phone != null)
+            {
+            @Html.DisplayFor(m => m.Order.Customer.Phone)
+            }
+            else
+                {
+                @:brak
+                }
+                </div>
+            if (Model.Order.Customer.Company != null)
+            {
+                 <div>@Html.DisplayNameFor(m => m.Order.Customer.Company.CompanyName)</div>
+               <div>@Html.ActionLink(Model.Order.Customer.Company.CompanyName,"Details","Company",new { id = Model.Order.Customer.Company.CompanyID}, null )</div>
+            }
+        }
+        @if(Model.Order.Company != null)
+        {
+            <div>@Html.DisplayNameFor(m => m.Order.Company.CompanyName)</div>
+            <div>@Html.ActionLink(Model.Order.Company.CompanyName,"Details","Company",new { id = Model.Order.Company.CompanyID} )</div>
+            <div>@Html.DisplayNameFor(m => m.Order.Company.CompanyRegon)</div>
+            <div>@Html.DisplayFor(m => m.Order.Company.CompanyRegon)</div>
+        }
+
+
+    </div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Order</legend>
+
+        @Html.HiddenFor(model => model.Order.OrderID)
+
+       <div class="editor-label">
+            @Html.LabelFor(model => model.Order.EquipmentType.EquipmentTypeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Order.EquipmentType.EquipmentTypeName)
+            @Html.ValidationMessageFor(model => model.Order.EquipmentType.EquipmentTypeName)
+        </div>
+                <div class="editor-label">
+            @Html.LabelFor(model => model.Order.receivingDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Order.receivingDate)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Order.endDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Order.endDate)
+            @Html.ValidationMessageFor(model => model.Order.endDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Order.additionalInformation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Order.additionalInformation)
+            @Html.ValidationMessageFor(model => model.Order.additionalInformation)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Order.Description)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Order.Description)
+        </div>
+        <div>
+            Wybierz status
+        </div>
+        <div>
+            @Html.DropDownListFor(m => m.selectedStatus, Model.OrderStatusList)
+        </div>
+        <div>
+                   <table>
+            <thead>
+                <tr>
+                    <th>
+                        Rodzaj naprawy
+                    </th>
+                    <th>
+                        Wycena
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @Html.EditorFor(m => m.reperairTypePrice)
+
+            </tbody>
+        </table>
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -34,6 +34,9 @@ namespace Domain.Entities
         [DataType(DataType.MultilineText)]
         [Display(Name = "Dodatkowe informacje: ")]
         public string additionalInformation { set; get; }
-
+        [Required]
+        [Display(Name = "Aktywny: ")]
+        public bool isActive { set; get; }
+        public string FullName() { return Name + Surname; }
     }
 }

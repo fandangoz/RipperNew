@@ -7,36 +7,56 @@ using Domain.Abstract;
 using Domain.Concrete;
 using Domain.Entities;
 using Domain.Utilities;
+using WebUI.Helpers;
+using WebUI.Models;
 namespace WebUI.Controllers
 {
     public class CompanyController : Controller
     {
+        const int PageSize = 10;
         private ICompaniesRepository CompaniesRepo { set; get; }
-        public CompanyController(ICompaniesRepository repo)
+        private IUserRepository UsersRepo { set; get; }
+        public CompanyController(ICompaniesRepository repo, IUserRepository Urepo)
         {
             CompaniesRepo = repo;
+            UsersRepo = Urepo;
         }
 
         //
         // GET: /Company/
 
-        public ActionResult Index()
-        {
-            return View(CompaniesRepo.Companies.ToList());
-        }
-
-        public ActionResult Create()
+        public ViewResult Index()
         {
             return View();
         }
-        public ActionResult Edit(int id = 0)
+
+        public PartialViewResult CompaniesList(int page = 1, string companyName = "", string companyRegon = "")
         {
-            if (id != 0)
+
+            var pagedData = new PagedData<Company>();
+            var companies = CompaniesRepo.Companies;
+            if (companyName.Length > 0)
             {
+                companies = from c in companies where c.CompanyName.ToLower().StartsWith(companyName.ToLower()) select c;
+            }
+            if (companyRegon.Length > 0)
+            {
+                companies = from c in companies where c.CompanyRegon.ToLower().StartsWith(companyRegon.ToLower()) select c;
+            }
+            pagedData.Data = companies.OrderBy(c => c.CompanyName).Skip(PageSize * (page - 1)).Take(PageSize).ToList();
+            pagedData.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)companies.Count() / PageSize));
+            pagedData.CurrentPage = page;
+            return PartialView(pagedData);
+        }
+
+        public ViewResult Create()
+        {
+            return View();
+        }
+        public ViewResult Edit(int id)
+        {
                 Company company = CompaniesRepo.Companies.FirstOrDefault(c => c.CompanyID == id);
                 return View(company);
-            }
-            return RedirectToAction("Index", "company");
         }
         [HttpPost]
         public ActionResult Edit(Company company)
@@ -53,7 +73,6 @@ namespace WebUI.Controllers
             try
             {
                 CompaniesRepo.SaveCompany(company);
-                string refeee = Request.UrlReferrer.ToString();
                 return RedirectToAction("Index", "Company");
             }
             catch (UserExistInDatabaseException ex)
@@ -95,6 +114,17 @@ namespace WebUI.Controllers
                 }
             }
             return Json(output, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Details(int id = 0)
+        {
+            Company company = CompaniesRepo.Companies.FirstOrDefault(c => c.CompanyID == id);
+            if (company == null)
+            {
+                return HttpNotFound();
+            }
+            var users = from u in UsersRepo.Users where u.Company.CompanyID == company.CompanyID select u;
+            return View(new CompanyUsersViewModel { Company = company, Users = users.ToArray() });
         }
         public JsonResult AutoCompleteCompanyName(string term)
         {

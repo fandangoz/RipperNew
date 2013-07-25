@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WebUI.Models;
 namespace WebUI.Infrastructure.Abstract
 {
-    interface IAuthenticateProvider
+    public interface IAuthenticateProvider
     {
         bool LogIn(LoginViewModel logInVM);
         void LogOut();

@@ -21,6 +21,7 @@ namespace Domain.Entities
         public string CompanyRegon { get; set; }
         [Display(Name = "Dodatkowe informacje: ")]
         public string AdditionalData { get; set; }
-
+        [Required]
+        public bool isActive { set; get; }
     }
 }

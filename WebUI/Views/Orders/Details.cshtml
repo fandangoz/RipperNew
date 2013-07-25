@@ -1,0 +1,121 @@
+﻿@model Domain.Entities.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Order</legend>
+    <div class ="display-label">
+        @if (Model.Customer != null)
+        {
+            <div>
+            @Html.DisplayNameFor(m => m.Customer.Login)</div>
+            <div>@Html.ActionLink(Model.Customer.Login, "Details", "Users", new { id = Model.Customer.UserID},null)</div>
+            <div>
+                Imię i nazwisko</div>
+            <div>
+            @if (Model.Customer.FullName().Length > 0)
+            {
+                @Model.Customer.FullName()
+            }
+            else
+            {
+                @:brak
+            }</div>
+            <div>@Html.DisplayNameFor(m => m.Customer.Phone)</div>
+            <div>
+            @if(Model.Customer.Phone != null)
+            {
+            @Html.DisplayFor(m => m.Customer.Phone)
+            }
+            else
+                {
+                @:brak
+                }
+                </div>
+            if (Model.Customer.Company != null)
+            {
+                 <div>@Html.DisplayNameFor(m => m.Customer.Company.CompanyName)</div>
+               <div>@Html.ActionLink(Model.Customer.Company.CompanyName,"Details","Company",new { id = Model.Customer.Company.CompanyID}, null )</div>
+            }
+        }
+        @if(Model.Company != null)
+        {
+            <div>@Html.DisplayNameFor(m => m.Company.CompanyName)</div>
+            <div>@Html.ActionLink(Model.Company.CompanyName,"Details","Company",new { id = Model.Company.CompanyID},null )</div>
+            <div>@Html.DisplayNameFor(m => m.Company.CompanyRegon)</div>
+            <div>@Html.DisplayFor(m => m.Company.CompanyRegon)</div>
+        }
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.receivingDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.receivingDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.endDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.endDate)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentType.EquipmentTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentType.EquipmentTypeName)
+    </div>
+    <div>
+        @Html.DisplayNameFor(model => model.OrderStatus.OrderStatusName)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.OrderStatus.OrderStatusName);
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.additionalInformation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.additionalInformation)
+    </div>
+    <div>
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Rodzaj naprawy
+                    </th>
+                    <th>
+                        Wycena
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.ReperairCostList)
+            {
+                <tr>
+                    <td>
+                        @item.ReperairType.Description
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |
+    @Html.ActionLink("Pokaż wszystkie", "Index")
+</p>

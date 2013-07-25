@@ -1,0 +1,80 @@
+﻿@model WebUI.Models.CompanyUsersViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CompanyUsersViewModel</legend>
+    <div class="display-label">
+        @Html.LabelFor(x => x.Company.CompanyID)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayFor(x => x.Company.CompanyID)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(x => x.Company.CompanyName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayFor(x => x.Company.CompanyName)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(x => x.Company.CompanyAddress)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayFor(x => x.Company.CompanyAddress)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(x => x.Company.CompanyRegon)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayFor(x => x.Company.CompanyRegon)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(x => x.Company.AdditionalData)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayFor(x => x.Company.AdditionalData)
+    </div>
+    <div class="display-label">
+        Pracownicy:
+        @if (Model.Users != null && Model.Users.Length > 0)
+        {
+    
+            <table>
+                <thead>
+                    <tr>
+                        <th>login:</th>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    @foreach (User u in Model.Users)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(u.Login, "Details",  "Users" ,new { id = u.UserID },null )</td>
+                            <td>@Html.ActionLink(u.Name != null ? u.Name : "brak", "Details",  "Users" ,new { id = u.UserID },null )</td>
+                            <td>@Html.ActionLink(u.Surname != null  ? u.Surname : "brak", "Details",  "Users" ,new { id = u.UserID },null )</td>
+                        </tr>
+                    }
+                </tbody>
+            
+            </table>
+
+        }
+    </div>
+        @Html.Action("OrdersList","Orders", new { isCompany = true , userId = @Model.Company.CompanyID})
+</fieldset>
+@Html.ActionLink("Dodaj zlecenie do tej firmy", "Create", "Orders", new { isCompany = true, id = @Model.Company.CompanyID }, null)
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Company.CompanyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

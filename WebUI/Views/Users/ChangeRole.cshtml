@@ -1,0 +1,41 @@
+﻿@model WebUI.Models.UserViewModel
+
+@{
+    ViewBag.Title = "ChangeRole";
+}
+@Html.HiddenFor(model => model.user.UserID)
+<div class="display-label">
+         @Html.DisplayNameFor(model => model.user.Login)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user.Login)
+    </div>
+
+       <div class="display-label">
+         @Html.DisplayNameFor(model => model.user.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user.Surname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user.Surname)
+    </div>
+<h2>ChangeRole</h2>
+@using (Html.BeginForm()) {
+         <div class="editor-field">
+                @Html.HiddenFor(model => model.user.UserID)
+                @Html.DropDownListFor(model => model.userRoleName, Model.RoleSelectList as SelectList)
+
+         </div>
+    <input type="submit" value="Zapisz" />
+}
+<div>
+    @Html.ActionLink("Szczegóły", "Details", new { id = Model.user.UserID })
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
