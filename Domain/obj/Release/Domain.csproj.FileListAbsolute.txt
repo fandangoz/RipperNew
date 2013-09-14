@@ -1,0 +1,12 @@
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Release\Domain.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Release\Domain.pdb
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Release\EntityFramework.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Release\Ninject.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Release\SimpleCrypto.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Release\EntityFramework.xml
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Release\Ninject.pdb
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\bin\Release\Ninject.xml
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Release\Domain.Migrations.InitialCreate.resources
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Release\Domain.csproj.GenerateResource.Cache
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Release\Domain.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Release\Domain.pdb

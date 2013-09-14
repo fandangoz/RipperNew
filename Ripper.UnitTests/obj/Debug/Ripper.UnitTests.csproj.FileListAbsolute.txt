@@ -27,3 +27,4 @@ C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Ripper.UnitTests
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Ripper.UnitTests\bin\Debug\EntityFramework.dll
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Ripper.UnitTests\bin\Debug\EntityFramework.xml
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Ripper.UnitTests\bin\Debug\SimpleCrypto.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Ripper.UnitTests\bin\Debug\WebActivatorEx.dll

@@ -34,3 +34,5 @@ C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\obj\Debug\
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\obj\Debug\WebUI.dll
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\obj\Debug\WebUI.pdb
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\bin\SimpleCrypto.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\bin\WebActivatorEx.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\bin\Microsoft.Web.Mvc.dll

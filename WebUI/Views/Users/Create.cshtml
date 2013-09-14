@@ -12,7 +12,7 @@
         $("#CompanyName").autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "/Company/AutoCompleteClientName",
+                    url: "/Company/AutoCompleteCompanyName",
                     type: "GET",
                     dataType: "json",
                     data: { term: request.term },
