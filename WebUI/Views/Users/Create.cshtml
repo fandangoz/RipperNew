@@ -28,21 +28,26 @@
             messages: {
                 noResults: "", results: ""
             },
-            select: function(event, ui) {
+            select: function (event, ui) {
                 //close the drop down
-            this.close
+                this.close
             },
 
-        open: function() {
-            $('.ui-autocomplete').css({'list-style': 'none', 'background-color':'white'});
-        },
+            open: function () {
+                $('.ui-autocomplete').css({ 'list-style': 'none', 'background-color': 'white' });
+            },
 
         });
 
     });
 
     $(document).ready(function () {
-        $("#companyFieldToggle").click(function(){
+        $("#companyFieldToggle").click(function () {
+            if ($("#companyFieldToggle").val().indexOf("Rozwiń") >= 0) {
+                $("#companyFieldToggle").val("Zwiń ekran dodawania firm");
+            } else {
+                $("#companyFieldToggle").val("Rozwiń ekran dodawania firm");
+            }
             $("#CompanyForm").fadeToggle();
             $("#CompanyAddOutput").hide();
             $("#CompanyAddOutput").text("");
@@ -51,61 +56,131 @@
     function onSuccess(data) {
         $("#CompanyAddOutput").show();
         $("#CompanyAddOutput").text(data);
+        if (data.indexOf("poprawnie") >= 0) {
+            $("#allerts").append(
+            '<div class="alert alert-success">' +
+              '<button type="button" class="close" data-dismiss="alert">' +
+                 '&times;</button> ' + data + ' </div>');
+            $("#CompanyAddOutput").text("");
+            $("#companyFieldToggle").val("Rozwiń ekran dodawania firm");
+            $("#CompanyForm").fadeToggle();
+        } else {
+            $("#CompanyAddOutput").addClass("text-warning");
+        }
     }
-    
-    $(document).ready(function (){
-        $("#CreatePasswordAutomatically").click (function()
-        {
-                $("#user_Password").val($("#user_Login").val().toString());
-                $("#passwordConfirmation").val($("#user_Login").val().toString());
+
+    $(document).ready(function () {
+        $("#CreatePasswordAutomatically").click(function () {
+            $("#Password").val($("#user_Login").val().toString());
+            $("#passwordConfirmation").val($("#user_Login").val().toString());
         })
     })
-</script>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-<fieldset>
-        
-        <legend>Podaj swoje dane</legend>
-        <p>Dane obowiązkowe: </p>   
-            @Html.ValidationMessageFor(x => x.user.Login)
-            @Html.LabelFor(x => x.user.Login)
-            @Html.EditorFor(x => x.user.Login)
-            @Html.ValidationMessageFor(x => x.user.Password)
-            @Html.LabelFor(x => x.user.Password)
-            @Html.EditorFor(x => x.user.Password)
-            @Html.ValidationMessageFor(x => x.passwordConfirmation)
-            @Html.LabelFor(x => x.passwordConfirmation)
-            @Html.EditorFor(x => x.passwordConfirmation)
-            
-            <p>Dane dodatkowe: </p>
-            @Html.LabelFor(x => x.user.Phone)
-            @Html.EditorFor(x => x.user.Phone)
-             @Html.LabelFor(x => x.user.Name)
-            @Html.EditorFor(x => x.user.Name)
-          @Html.LabelFor(x => x.user.Surname)
-            @Html.EditorFor(x => x.user.Surname)  
-            @Html.LabelFor(x => x.user.Address)
-            @Html.EditorFor(x => x.user.Address)
-           @Html.LabelFor(x => x.user.additionalInformation)
-            @Html.EditorFor(x => x.user.additionalInformation)
-            @Html.LabelFor(x => x.CompanyName)
-            @Html.EditorFor(x => x.CompanyName);
-        <input type="submit" , value="Zatwierdz" />
+
+</script>
+<div id="allerts">
+
+</div>
+@using (Html.BeginHorizontalForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+
+        <legend>Podaj dane użytkownika</legend>
+        <div style="float:left">
+        <h4>Dane obowiązkowe:
+        </h4>
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.user.Login, new { @class = "control-label" })
+            <div class="controls">
+
+                @Html.EditorFor(x => x.user.Login)
+                @Html.ValidationMessageFor(x => x.user.Login)
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(x => x.Password, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(x => x.Password)
+                @Html.ValidationMessageFor(x => x.Password)
+            </div>
+        </div>
+        <div class="control-group">
+
+            @Html.LabelFor(x => x.passwordConfirmation, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(x => x.passwordConfirmation)
+                @Html.ValidationMessageFor(x => x.passwordConfirmation)
+            </div>
+        </div>
+            <div>
+               <input type="button" class="btn btn-mini" id="CreatePasswordAutomatically" value="Skopiuj login jako hasło" style="float:right" /> 
+            </div>
+            </div>
+        <div style="float:left;margin-left:40px">
+        <h4>Dane dodatkowe: </h4>
+        <div class="control-group">
+            @Html.LabelFor(x => x.user.Phone, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(x => x.user.Phone)
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(x => x.user.Name, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(x => x.user.Name)
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(x => x.user.Surname, new { @class = "control-label" })
+            <div class="controls">
+                       @Html.EditorFor(x => x.user.Surname)
+ </div></div>
+        <div class="control-group">
+                @Html.LabelFor(x => x.user.Address, new { @class = "control-label" })
+                <div class="controls">
+
+
+                    @Html.EditorFor(x => x.user.Address)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.user.additionalInformation, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(x => x.user.additionalInformation)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(x => x.CompanyName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(x => x.CompanyName)
+                </div>
+            </div>
+             <div class="control-group" >
+            <div class="controls">
+            <input type="submit" value="Dodaj używkownika" class="btn btn-primary">
+            </div></div>
+            </div>
+
     </fieldset>
 }
-<button id="CreatePasswordAutomatically"> Skopiuj login jako hasło </button>
-<p>
-<button id="companyFieldToggle" value="Dodaj firmę">Dodaj firmę</button>
-    </p>
-<div >
+
+<hr />
+<div>
     <label id="CompanyAddOutput"></label>
 </div>
 
-<div id ="CompanyForm" hidden="hidden">
-@using (Ajax.BeginForm("_AddNewCompany", "Company", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "onSuccess" }))
-{
-    { Html.RenderPartial("_AddNewCompany", new Company()); }
-}
+<div id="CompanyForm" hidden="hidden">
+    @using (Ajax.BeginForm("_AddNewCompany", "Company", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "onSuccess" }))
+    {
+        { Html.RenderPartial("_AddNewCompany", new Company()); }
+    }
 </div>
+<hr />
+<p>
+    <input id="companyFieldToggle" class="btn btn-inverse" value="Rozwiń ekran dodawania firm"/>
+</p>
+
+

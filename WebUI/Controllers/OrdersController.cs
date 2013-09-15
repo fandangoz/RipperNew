@@ -95,6 +95,11 @@ namespace WebUI.Controllers
             return View(order);
         }
 
+        public ActionResult CreateBoot()
+        {
+            return RedirectToAction("Create");
+        }
+
         //
         // GET: /Orders/Create
 
@@ -294,6 +299,11 @@ namespace WebUI.Controllers
                           where EqType.EquipmentTypeName.ToLower().StartsWith(term.ToLower())
                           select new { Type = EqType.EquipmentTypeName }).Distinct().ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ViewResult BootIndex()
+        {
+            return View();
         }
 
     }

@@ -10,11 +10,17 @@ namespace WebUI.Models
     public class UserViewModel
     {
         public User user { set; get; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Potwierdzenie hasła jest wymagane")]
+        [StringLength(30, MinimumLength = 4, ErrorMessage = "pole - potwierdź hasło musi zawierać od 4 do 30 znaków")]
         [DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "hasla nie są jednakowe")]
         [Display(Name = "Potwierdz hasło: ")]
         public string passwordConfirmation { set; get; }
-        public string Password { get { return user.Password; } }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Hasło jest wymagane")]
+        [Display(Name = "Hasło: ")]
+        [DataType(DataType.Password)]
+        [StringLength(30, MinimumLength = 4, ErrorMessage = "pole - hasło musi zawierać od 4 do 30 znaków")]
+        public string Password { get { return user.Password; } set { user.Password = value; } }
         public string CompanyName { set; get; }
         public string userRoleName { set; get; }
         public SelectList RoleSelectList { set; get; }

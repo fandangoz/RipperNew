@@ -82,6 +82,7 @@ namespace BootstrapSupport
             html.ViewContext.Writer.Write(BeginControlGroupFor(html, propertyName, htmlAttributes));
             return new ControlGroup(html);
         }
+
     }
 
     public static class Alerts
@@ -95,4 +96,6 @@ namespace BootstrapSupport
             get { return new[] {SUCCESS, ATTENTION, INFORMATION, ERROR}; }
         }
     }
+
+
 }

@@ -18,6 +18,12 @@ namespace WebUI.Controllers
         {
             Authentication = Auth;
         }
+
+        public ViewResult BootIndex()
+        {
+            return View();
+        }
+
         //
         // GET: /LogIn/
         
@@ -37,19 +43,19 @@ namespace WebUI.Controllers
                 return RedirectToAction("Index", "Home");
 
         }
-        [Authorize(Roles="Customer")]
+        [Authorize(Roles = "Admin, Biuro, Klient")]
         public RedirectToRouteResult LogOut()
         {
             Authentication.LogOut();
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize(Roles="Customer")]
+        [Authorize(Roles = "Admin, Biuro, Klient")]
         public ActionResult ChangePassword()
         {
             return View();
         }
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "Admin, Biuro, Klient")]
         [HttpPost]
         public ActionResult ChangePassword(PasswordChangeViewModel passwordVM)
         {

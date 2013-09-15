@@ -9,6 +9,8 @@ using System.Web.Routing;
 using System.Data.Entity;
 using WebUI.Infrastructure;
 using Domain.Utilities;
+using System.Web.Security;
+using System.Security.Principal;
 namespace WebUI
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 

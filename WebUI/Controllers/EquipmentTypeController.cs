@@ -93,7 +93,10 @@ namespace WebUI.Controllers
 
         //
         // GET: /EquipmentType/Delete/5
-
+        public ViewResult BootIndex()
+        {
+            return View();
+        }
 
     }
 }

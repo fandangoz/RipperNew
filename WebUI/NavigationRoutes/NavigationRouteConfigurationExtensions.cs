@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 
+using WebUI.Infrastructure.Concrete;
 namespace NavigationRoutes
 {
     public static class NavigationRouteConfigurationExtensions
@@ -54,6 +55,14 @@ namespace NavigationRoutes
             newRoute.DisplayName = displayName;
             routes.Add(newRoute.Name, newRoute);
             return new NavigationRouteBuilder(routes, newRoute);
+        }
+
+        public static NavigationRouteBuilder FilterRoute(this NavigationRouteBuilder builder, string role)
+        {
+            var currentRoute = builder._parent;
+            
+            NavigationRoutes.Filters.Add(new NaviFilter(builder, role));
+            return builder;
         }
 
         public static NavigationRouteBuilder AddChildRoute<T>(this NavigationRouteBuilder builder, string DisplayText, Expression<Func<T, ActionResult>> action,string areaName="") where T : IController

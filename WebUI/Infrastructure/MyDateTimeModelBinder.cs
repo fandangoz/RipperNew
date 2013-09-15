@@ -34,4 +34,5 @@ namespace WebUI.Infrastructure
             return base.BindModel(controllerContext, bindingContext);
         }
     }
+
 }

@@ -27,7 +27,7 @@ namespace NavigationRoutes
 
     public static class NavigationRoutes
     {
-        public static List<INavigationRouteFilter> Filters=new List<INavigationRouteFilter>();
+        public static List<INavigationRouteFilter> Filters = new List<INavigationRouteFilter>();
     }
     public static class NavigationViewExtensions
     {
@@ -45,14 +45,21 @@ namespace NavigationRoutes
             {
                 foreach (var route in navigationRoutes.ToArray())
                 {
+                    bool remove = false;
                     foreach (var filter in routeFilters)
                     {
-                        if (filter.ShouldRemove(route))
+
+                        if (!filter.ShouldRemove(route))
                         {
-                            navigationRoutes.Remove(route);
-                            break;
+                            remove = true;
                         }
+ 
                     }
+                    if (remove == false)
+                    {
+                        navigationRoutes.Remove(route);
+                    }
+
                 }
             }
             return navigationRoutes;

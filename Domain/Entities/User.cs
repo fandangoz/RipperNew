@@ -18,11 +18,11 @@ namespace Domain.Entities
         [Required(ErrorMessage="pole - nazwa użytkownika jest wymagane")]
         [StringLength(30,MinimumLength=4, ErrorMessage = "pole - nazwa użytkownika musi zawierać od 4 do 30 znaków")]
         public string Login { set; get; }
-        [Required(ErrorMessage="Pole hasło jest wymagane")]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło: ")]
         public string Password { get; set; }
         public string PasswordSalt { get; set; }
+        [StringLength(30, MinimumLength = 4, ErrorMessage = "pole - imie użytkownika musi zawierać od 4 do 30 znaków")]
         [Display(Name = "Imie: ")]
         public string Name { set; get; }
         [Display(Name = "Nazwisko: ")]

@@ -25,6 +25,9 @@ namespace WebUI.Controllers
         }
         //
         // GET: /Users/
+        public ViewResult BootIndex() {
+            return View();
+        }
 
         public ViewResult Index()
         {
@@ -90,6 +93,15 @@ namespace WebUI.Controllers
                 }
                 userViewModel.user.Company = companiesRepo.Companies.FirstOrDefault(c => c.CompanyName == userViewModel.CompanyName);
             }
+            if (userViewModel.Password.Length < 4)
+            {
+                ModelState.AddModelError("", "Pola hasło musi posiadać przynajmniej 4 znaki");
+            }
+            if (userViewModel.Password != userViewModel.passwordConfirmation)
+            {
+                ModelState.AddModelError("", "Pola hasło i potwierdzenie hasła muszą być jednakowe");
+            }
+
             if (ModelState.IsValid)
             {
                 try

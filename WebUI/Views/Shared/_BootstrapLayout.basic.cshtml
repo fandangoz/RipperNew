@@ -16,9 +16,11 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+        <script src="~/Scripts/bootstrap-validation.js"></script>
+
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+       <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -26,10 +28,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#" title="change in _bootstrapLayout.basic.cshtml">Application Name</a>
+                    <a class="brand" href="/" title="change in _bootstrapLayout.basic.cshtml">Kosiarz</a>
                     <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            @Html.Navigation()
+                        <ul class="nav pull-right">
+                            <li>
+                            @Html.Navigation()</li>
+                            @if(HttpContext.Current.User.Identity.Name == "")
+                            {
+                            <li>
+                             @Html.ActionLink("Zaloguj","LogIn", "Account")
+                            </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -44,8 +53,8 @@
                 <p>&copy; Company @System.DateTime.Now.ToString("yyyy")</p>
             </footer> 
         </div>
-         @*@Scripts.Render("~/js")
-         @RenderSection("Scripts", required: false)*@
+         @Scripts.Render("~/js")
+         @RenderSection("Scripts", required: false)
     </body>
 </html>
 

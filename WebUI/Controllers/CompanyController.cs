@@ -133,6 +133,10 @@ namespace WebUI.Controllers
                           select new { c.CompanyName }).Distinct().ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        public ViewResult BootIndex()
+        {
+            return View();
+        }
 
     }
 }
