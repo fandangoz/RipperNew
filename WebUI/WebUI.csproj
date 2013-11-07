@@ -181,8 +181,11 @@
     <Content Include="Content\bootstrap-mvc-validation.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap-select.css" />
+    <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -290,10 +293,13 @@
     <Content Include="Content\less\bootstrap.less" />
     <Content Include="Content\less\alerts.less" />
     <Content Include="Content\less\accordion.less" />
+    <Content Include="Content\less\datepicker.less" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
     <Content Include="Scripts\bootstrap-alert.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap-validation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -318,7 +324,9 @@
     <Content Include="Scripts\less.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -338,12 +346,11 @@
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Company\Create.cshtml" />
     <Content Include="Views\Shared\View1.cshtml" />
-    <Content Include="Views\Users\UsersList.cshtml" />
+    <Content Include="Views\Shared\UsersList.cshtml" />
     <Content Include="Views\Company\CompaniesList.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Company\Details.cshtml" />
-    <Content Include="Views\Users\ChangeRole.cshtml" />
     <Content Include="Views\EquipmentType\Index.cshtml" />
     <Content Include="Views\EquipmentType\Details.cshtml" />
     <Content Include="Views\EquipmentType\Create.cshtml" />
@@ -369,6 +376,8 @@
     <Content Include="Views\Shared\_BootstrapLayout.basic.cshtml" />
     <Content Include="Views\Shared\_alerts.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_UserDetailsShared.cshtml" />
+    <Content Include="Views\Shared\_CompanyDetailsShared.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

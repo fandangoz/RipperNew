@@ -10,7 +10,9 @@ namespace BootstrapSupport
         {
             bundles.Add(new ScriptBundle("~/js").Include(
                 "~/Scripts/jquery-migrate-{version}.js",
-                "~/Scripts/bootstrap.js"
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/bootstrap-select.min.js",
+                "~/Scripts/bootstrap-datepicker.js"
 
                 ));
 
@@ -18,7 +20,9 @@ namespace BootstrapSupport
                 "~/Content/bootstrap.css",
                 "~/Content/body.css",
                 "~/Content/bootstrap-responsive.css",
-                "~/Content/bootstrap-mvc-validation.css"
+                "~/Content/bootstrap-mvc-validation.css",
+                "~/Content/bootstrap-select.min.css",
+                "~/Content/datepicker.css"
                 ));
         }
     }

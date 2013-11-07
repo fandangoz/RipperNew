@@ -1,44 +1,46 @@
 ﻿@model Domain.Entities.Company
-@using (Html.BeginForm()) {
+
+@using (Html.BeginHorizontalForm())
+{
     @Html.AntiForgeryToken()
 
     <fieldset>
-        <legend>Company</legend>
+        <legend>Dodawanie Firm</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyName)
+        <div class="control-group">
+            @Html.LabelFor(model => model.CompanyName, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.CompanyName)
+                @Html.ValidationMessageFor(model => model.CompanyName)
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyName)
-            @Html.ValidationMessageFor(model => model.CompanyName)
+        <div class="control-group">
+            @Html.LabelFor(model => model.CompanyAddress, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.CompanyAddress)
+                @Html.ValidationMessageFor(model => model.CompanyAddress)
+            </div>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyAddress)
+        <div class="control-group">
+            @Html.LabelFor(model => model.CompanyRegon, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.CompanyRegon)
+                @Html.ValidationMessageFor(model => model.CompanyRegon)
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyAddress)
-            @Html.ValidationMessageFor(model => model.CompanyAddress)
+        <div class="control-group">
+            @Html.LabelFor(model => model.AdditionalData, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.AdditionalData)
+                @Html.ValidationMessageFor(model => model.AdditionalData)
+            </div>
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyRegon)
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Dodaj nową firmę" class="btn btn-primary" />
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyRegon)
-            @Html.ValidationMessageFor(model => model.CompanyRegon)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AdditionalData)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AdditionalData)
-            @Html.ValidationMessageFor(model => model.AdditionalData)
-        </div>
-            
-        <p>
-            <input type="submit" value="Create" />
-        </p>
     </fieldset>
 }
 

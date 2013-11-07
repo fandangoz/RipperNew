@@ -20,7 +20,7 @@ namespace WebUI.Controllers
 
         //
         // GET: /EquipmentType/
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Index()
         {
             return View(EqRepo.EquipmentTypes.ToList());
@@ -28,7 +28,7 @@ namespace WebUI.Controllers
 
         //
         // GET: /EquipmentType/Details/5
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Details(int id = 0)
         {
             EquipmentType equipmenttype = EqRepo.EquipmentTypes.FirstOrDefault(eq => eq.EquipmentTypeID == id);
@@ -41,7 +41,7 @@ namespace WebUI.Controllers
 
         //
         // GET: /EquipmentType/Create
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Create()
         {
             return View();
@@ -52,6 +52,7 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Create(EquipmentType equipmenttype)
         {
             if (ModelState.IsValid)
@@ -65,7 +66,7 @@ namespace WebUI.Controllers
 
         //
         // GET: /EquipmentType/Edit/5
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Edit(int id = 0)
         {
             EquipmentType equipmenttype = EqRepo.EquipmentTypes.FirstOrDefault(eq => eq.EquipmentTypeID == id);
@@ -81,6 +82,7 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Edit(EquipmentType equipmenttype)
         {
             if (ModelState.IsValid)

@@ -36,7 +36,7 @@ namespace WebUI.Controllers
         private IOrderStatusesRepository OrderStatusesRepo;
         //
         // GET: /Orders/
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Index()
         {
             var orderStatuses = OrderStatusesRepo.OrderStatuses.Select( o => new SelectListItem { Value = o.OrderStatusName, Text = o.OrderStatusName}).ToList();
@@ -45,13 +45,14 @@ namespace WebUI.Controllers
 
             return View(new OrdersIndexModelView { ordersStatusesList = orderStatusList });
         }
-        public PartialViewResult OrdersList(int page = 1, string name = "", string status ="", bool isCompany = false, int userId = 0)
+         [Authorize(Roles = "Admin, Biuro")]
+        public PartialViewResult OrdersList(int page = 1, string name = "", string status ="", int userId = 0, bool? isCompany =false)
         {
 
             var pagedData = new PagedData<Order>();
             var orders = OrdersRepository.Orders;
 
-            if (status.Length > 0)
+            if (status.Length > 0 && !status.Equals("wszystkie"))
             {
                 orders = from o in orders where o.OrderStatus.OrderStatusName.ToLower().StartsWith(status) select o;
             }
@@ -84,7 +85,7 @@ namespace WebUI.Controllers
             pagedData.CurrentPage = page;
             return PartialView(pagedData);
         }
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Details(int id = 0)
         {
             Order order = OrdersRepository.Orders.FirstOrDefault(o => o.OrderID == id);
@@ -94,7 +95,7 @@ namespace WebUI.Controllers
             }
             return View(order);
         }
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult CreateBoot()
         {
             return RedirectToAction("Create");
@@ -102,7 +103,7 @@ namespace WebUI.Controllers
 
         //
         // GET: /Orders/Create
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Create(bool? isCompany, int id =0)
         {
             OrderModelView oMV = new OrderModelView { Order = new Order { receivingDate = DateTime.Now } };
@@ -127,6 +128,7 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Create(OrderModelView orderMV)
         {
             if (orderMV.Order.isCompany == false)
@@ -181,7 +183,7 @@ namespace WebUI.Controllers
 
         //
         // GET: /Orders/Edit/5
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Edit(int id = 0)
         {
             Order order = OrdersRepository.Orders.FirstOrDefault(o => o.OrderID == id);
@@ -208,6 +210,7 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Edit(OrderModelView orderMV)
         {
             foreach (var item in orderMV.reperairTypePrice)
@@ -240,7 +243,7 @@ namespace WebUI.Controllers
             if (orderMV.Order.OrderStatus != null)
             {
                 ModelState["Order.OrderStatus"].Errors.Clear();
-                if (orderMV.Order.OrderStatus.OrderStatusName != "Anulowane" && orderMV.Order.OrderStatus.OrderStatusName != "Zakończone")
+                if (ModelState["Order.endDate"] != null && orderMV.Order.OrderStatus.OrderStatusName != "Anulowane" && orderMV.Order.OrderStatus.OrderStatusName != "Zakończone")
                 {
                     ModelState["Order.endDate"].Errors.Clear();
                 }
@@ -258,7 +261,7 @@ namespace WebUI.Controllers
 
         //
         // GET: /Orders/Delete/5
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Delete(int id = 0)
         {
             Order order = OrdersRepository.Orders.FirstOrDefault(o => o.OrderID == id);
@@ -268,7 +271,7 @@ namespace WebUI.Controllers
             }
             return View(order);
         }
-
+         [Authorize(Roles = "Admin, Biuro")]
         public JsonResult AutoCompleteClientName(string term, string type)
         {
             if (type == "Firma")
@@ -286,6 +289,7 @@ namespace WebUI.Controllers
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
+         [Authorize(Roles = "Admin, Biuro")]
         public JsonResult GerReperairTypes(string term)
         {
             var result = (from Rt in ReperairTypeRepo.ReperairTypes
@@ -293,6 +297,7 @@ namespace WebUI.Controllers
                           select new { Type = Rt.Description }).Distinct().ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+         [Authorize(Roles = "Admin, Biuro")]
         public JsonResult GetEqupmentTypes(string term)
         {
             var result = (from EqType in EquipmentTypeRepo.EquipmentTypes

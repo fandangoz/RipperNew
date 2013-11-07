@@ -44,5 +44,6 @@ namespace Domain.Entities
         public virtual ICollection<ReperairTypePrice> ReperairCostList { set; get; }
         [Required]
         public bool isCompany { set; get; }
+
     }
 }

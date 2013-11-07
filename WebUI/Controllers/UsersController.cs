@@ -28,12 +28,13 @@ namespace WebUI.Controllers
         public ViewResult BootIndex() {
             return View();
         }
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ViewResult Index()
         {
             return View();
         }
-        public PartialViewResult UsersList(int page = 1, string name = "", string surname = "", string login = "", string selectedRole = "", bool? showInactiveUsers = false)
+         [Authorize(Roles = "Admin, Biuro")]
+        public PartialViewResult UsersList(int page = 1, string name = "", string surname = "", string login = "", string selectedRole = "", bool? showInactiveUsers = false, int companyID = 0)
         {
             
             var pagedData = new PagedData<User>();
@@ -41,6 +42,10 @@ namespace WebUI.Controllers
             if (showInactiveUsers == false)
             {
                 users = from u in users where u.isActive == true select u;
+            }
+            if (companyID != 0)
+            {
+                users = from u in users where u.Company.CompanyID == companyID select u;
             }
             var userRoles = userRolesRepo.UsersRoles;
             foreach (UserRole uR in userRoles)
@@ -68,14 +73,14 @@ namespace WebUI.Controllers
             pagedData.CurrentPage = page;
             return PartialView(pagedData);
         }
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Create() 
         { 
             return View();
         }
         [HttpPost]
-        public ActionResult Create(UserViewModel userViewModel)
-        
+        [Authorize(Roles = "Admin, Biuro")]
+        public ActionResult Create(UserViewModel userViewModel)   
         {
             userViewModel.user.isActive = true;
             userViewModel.user.UserRole = userRolesRepo.UsersRoles.FirstOrDefault(u => u.UserRoleID == 2);
@@ -119,7 +124,7 @@ namespace WebUI.Controllers
             }
             return View(userViewModel);
         }
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Edit(int id=0)
         {
             User user = repo.Users.FirstOrDefault(u => u.UserID == id);
@@ -128,15 +133,22 @@ namespace WebUI.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new UserViewModel { user = user, CompanyName = user.Company != null ? user.Company.CompanyName : null });
+            var rolesList = userRolesRepo.UsersRoles.Select(r => new SelectListItem { Value = r.RoleName, Text = r.RoleName }).ToList();
+            SelectList RoleSelectListTmp = new SelectList(rolesList, "Value", "Text");
+            return View(new UserViewModel { user = user, CompanyName = user.Company != null ? user.Company.CompanyName : null,
+                        RoleSelectList = RoleSelectListTmp, userRoleName = user.UserRole.RoleName });
         
         }
         [HttpPost]
+        [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Edit(UserViewModel userMV)
         {
             User user = userMV.user;
-            user.UserRole = repo.Users.FirstOrDefault(u => u.UserID == user.UserID).UserRole;
-            if (!user.UserRole.Equals("Klient") && !User.IsInRole("Admin"))
+            User oldUser = repo.Users.FirstOrDefault(u => u.UserID == user.UserID);
+            user.UserRole = userRolesRepo.UsersRoles.FirstOrDefault(uR => uR.RoleName.Equals(userMV.userRoleName));
+            user.Password = oldUser.Password;
+            user.PasswordSalt = oldUser.PasswordSalt;
+            if (!user.UserRole.RoleName.Equals("Klient") && !User.IsInRole("Admin"))
             {
                 ModelState.AddModelError("","Nie masz wystarczających uprawnień aby edytować tego użytkownika, skontaktuj się z administratorem");
             }
@@ -148,13 +160,19 @@ namespace WebUI.Controllers
                     ModelState.AddModelError("", "Podana firma nie znajduje się w bazie danych");
                 }
             }
+            if (userMV.userRoleName != "Klient" && userMV.CompanyName != null)
+            {
+                ModelState.AddModelError("", "Tylko klient może mieć przypisaną firmę");
+            }
             if (user.UserRole != null)
             {
                 if (ModelState["user.userRole"] != null)
                     ModelState["user.userRole"].Errors.Clear();
             }
-            if (ModelState["passwordConfirmation"] != null)
+            if (user.Password != null && ModelState["passwordConfirmation"] != null)
                 ModelState["passwordConfirmation"].Errors.Clear();
+            if (user.PasswordSalt != null && ModelState["password"] != null)
+                ModelState["password"].Errors.Clear();
             if (ModelState.IsValid)
             {
                 try
@@ -170,36 +188,40 @@ namespace WebUI.Controllers
                     return RedirectToAction("Details", new { id = user.UserID });
                 }
             }
+            var rolesList = userRolesRepo.UsersRoles.Select(r => new SelectListItem { Value = r.RoleName, Text = r.RoleName });
+            userMV.RoleSelectList = new SelectList(rolesList, "Value", "Text");
+            userMV.userRoleName = user.UserRole.RoleName;
             return View(userMV);
         }
-        public ActionResult ChangeRole(int id = 0)
-        {
-            User user = repo.Users.FirstOrDefault(u => u.UserID == id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            var rolesList = userRolesRepo.UsersRoles.Select(r => new SelectListItem { Value = r.RoleName, Text = r.RoleName }).ToList();
-            SelectList RoleSelectListTmp = new SelectList(rolesList, "Value", "Text");
-            return View(new UserViewModel { user = user, RoleSelectList = RoleSelectListTmp, userRoleName = user.UserRole.RoleName });
-        }
-        [HttpPost]
-        public ActionResult ChangeRole(UserViewModel uVM)
-        {
-            try
-            { 
-                repo.ChangeUserRole(uVM.user, uVM.userRoleName);
-                return RedirectToAction("Details", new { id = uVM.user.UserID });
-            }
-            catch(_ItemNotExistInDatabaseException  ex)
-            {
-                ModelState.AddModelError("", ex);
-            }
-            User user = repo.Users.FirstOrDefault(u => u.UserID == uVM.user.UserID);
-            var rolesList = userRolesRepo.UsersRoles.Select(r => new SelectListItem { Value = r.RoleName, Text = r.RoleName });
-            SelectList RoleSelectListTmp = new SelectList(rolesList, "Value", "Text");
-            return View(new UserViewModel { user = user, RoleSelectList = RoleSelectListTmp, userRoleName = user.UserRole.RoleName });
-        }
+        //public ActionResult ChangeRole(int id = 0)
+        //{
+        //    User user = repo.Users.FirstOrDefault(u => u.UserID == id);
+        //    if (user == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    var rolesList = userRolesRepo.UsersRoles.Select(r => new SelectListItem { Value = r.RoleName, Text = r.RoleName }).ToList();
+        //    SelectList RoleSelectListTmp = new SelectList(rolesList, "Value", "Text");
+        //    return View(new UserViewModel { user = user, RoleSelectList = RoleSelectListTmp, userRoleName = user.UserRole.RoleName });
+        //}
+        //[HttpPost]
+        //public ActionResult ChangeRole(UserViewModel uVM)
+        //{
+        //        try
+        //        { 
+        //            repo.ChangeUserRole(uVM.user, uVM.userRoleName);
+        //            return RedirectToAction("Details", new { id = uVM.user.UserID });
+        //        }
+        //        catch(_ItemNotExistInDatabaseException  ex)
+        //        {
+        //            ModelState.AddModelError("", ex);
+        //        }
+        //        User user = repo.Users.FirstOrDefault(u => u.UserID == uVM.user.UserID);
+        //        var rolesList = userRolesRepo.UsersRoles.Select(r => new SelectListItem { Value = r.RoleName, Text = r.RoleName });
+        //        SelectList RoleSelectListTmp = new SelectList(rolesList, "Value", "Text");
+        //    return View(new UserViewModel { user = user, RoleSelectList = RoleSelectListTmp, userRoleName = user.UserRole.RoleName });
+        //}
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Details(int id = 0)
         {
             User user = repo.Users.FirstOrDefault(u => u.UserID == id);

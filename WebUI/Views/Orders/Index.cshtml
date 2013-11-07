@@ -4,15 +4,15 @@
     ViewBag.Title = "Index";
 }
 <script>
-    $().ready(function () {
-        $("#NameSzukaj").keyup(ajaxOrderFilter)
-    });
-    $().ready(function () {
-        $("#selectedStatus").change(ajaxOrderFilter)
-    });
-    $().ready(function () {
-        $('input[name=group1]').change(ajaxOrderFilter)
-    });
+    //$().ready(function () {
+    //    $("#NameSzukaj").keyup(ajaxOrderFilter)
+    //});
+    //$().ready(function () {
+    //    $("#selectedStatus").change(ajaxOrderFilter)
+    //});
+    //$().ready(function () {
+    //    $('input[name=group1]').change(ajaxOrderFilter)
+    //});
     var ajaxOrderFilter = function () {
             var isCompany = $('input:radio[name=group1]:checked').val()
             var name = $("#NameSzukaj").val();
@@ -22,31 +22,69 @@
             data: {
                 isCompany: isCompany == "Klient" ? false : true,
                 name: name == null ? "" : name,
-                selectedStatus: selectedStatus
+                status: selectedStatus
             },
             success: function (data) {
                 $("#orders-list").html(data);
             }
         })
-     }
-    </script>
-<div>
-@Html.DropDownListFor(m => m.selectedStatus,Model.ordersStatusesList)
-    </div>
-<div>
-<input type="radio" name="group1" value="Klient" checked> Klient prywatny<br/>
-<input type="radio" name="group1" value="Firma" > Firma <br />
-    </div>
- <p>Login: @Html.TextBox("NameSzukaj")</p>
+    }
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker({
+            size: 6
+        });
+    });
 
+    $().ready(function () {
+        $("#submitFilter").click(ajaxOrderFilter);
+    });
+    </script>
+
+<form class="form-horizontal">
+    <fieldset>
+        <legend>Filtr zleceń</legend>
+                <div class="row-fluid">
+        <div class="span4">
+
+            <div class="control-group">
+                <label class="control-label" for="group1">Typ klienta:</label>
+                                <div class="controls">
+            <input type="radio" name="group1" value="Klient" checked> Klient prywatny<br/>
+            <input type="radio" name="group1" value="Firma" > Firma <br />
+                                    </div>
+         </div>
+            </div>
+                    <div class="span4" >
+                        <div class="control-group">
+                <label class="control-label" for="status">Status:</label>
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.selectedStatus,Model.ordersStatusesList, new { @class = "selectpicker" })
+                </div>
+            </div>
+                                    <div>
+                        <div class="control-group">
+                <label class="control-label" for="NameSzukaj">Nazwa:</label>
+                <div class="controls">
+                  @Html.TextBox("NameSzukaj")
+                </div>
+                        </div>
+   
+            </div>
+                        </div>
+            <div class="span2 offset8">
+
+                 <button  type="button" id="submitFilter" class="btn btn-primary" value="Szukaj"><i class="icon-search"></i>Szukaj</button>
+            </div>
+        </div>
+        </fieldset>
+</form>
+
+<div style="float:right;margin:10px"><a href="@Url.Action("Create")" class = "btn btn-primary btn-large"><i class="icon-share-alt" ></i>Dodaj nowe zlecenie</a></div>
+
+<h2>Lista zleceń</h2>
 <div id ="orders-list">
     @Html.Action("OrdersList")
 </div>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
 

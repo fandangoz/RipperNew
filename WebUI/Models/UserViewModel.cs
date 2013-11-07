@@ -22,6 +22,7 @@ namespace WebUI.Models
         [StringLength(30, MinimumLength = 4, ErrorMessage = "pole - hasło musi zawierać od 4 do 30 znaków")]
         public string Password { get { return user.Password; } set { user.Password = value; } }
         public string CompanyName { set; get; }
+        [Display(Name = "Rola użytkownika: ")]
         public string userRoleName { set; get; }
         public SelectList RoleSelectList { set; get; }
 

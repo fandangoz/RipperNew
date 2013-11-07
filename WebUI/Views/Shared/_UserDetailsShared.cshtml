@@ -1,0 +1,48 @@
+﻿@model Domain.Entities.User
+
+<style type ="text/css">
+    #freelance dt {
+        overflow: visible;
+        width: 230px !important;
+        margin-right: 8px;
+    }
+.dl-horizontal > dd:after {
+  display: table;
+  content: "";
+  clear: both;
+
+}
+
+</style>
+
+<fieldset>
+
+    <dl class="dl-horizontal text-overflow" id="freelance">
+        <dt>@Html.DisplayNameFor(model => model.Login)</dt>
+        <dd>@Html.DisplayFor(model => model.Login)</dd>
+
+        <dt> @Html.DisplayNameFor(model => model.Name)  </dt>
+        <dd> @Html.DisplayFor(model => model.Name)</dd>
+        
+        <dt>@Html.DisplayNameFor(model => model.Surname)</dt>
+        <dd>@Html.DisplayFor(model => model.Surname) </dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Address)</dt>
+        <dd>@Html.DisplayFor(model => model.Address)</dd>
+
+        <dt> @Html.DisplayNameFor(model => model.Phone)</dt>
+        <dd>@Html.DisplayFor(model => model.Phone)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.additionalInformation)</dt>
+        <dd>@Html.DisplayFor(model => model.additionalInformation) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.isActive)</dt>
+        <dd>@Html.DisplayFor(model => model.isActive) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.UserRole.RoleName)</dt>
+        <dd> @Html.DisplayFor(model => model.UserRole.RoleName)  </dd>
+    </dl>
+
+
+
+</fieldset>

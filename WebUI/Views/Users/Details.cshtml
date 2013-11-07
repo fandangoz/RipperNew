@@ -3,77 +3,17 @@
 @{
     ViewBag.Title = "Details";
 }
+@{Html.RenderPartial("_UserDetailsShared", Model);}
 
-<h2>Details</h2>
-
-<fieldset>
-    <legend>User</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Login)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Login)
-    </div>
-
-       <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Surname)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Surname)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Address)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Phone)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Phone)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.additionalInformation)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.additionalInformation)
-    </div>
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.isActive)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.isActive)
-    </div>
-    @if(Model.Company != null)
+  @if(Model.Company != null)
     {
-    <div class="display-label">
-        Firma   
-    </div>
-        <div class="display-field">
-            @Html.ActionLink(Model.Company.CompanyName, "Details","Company", new { id = @Model.Company.CompanyID},null)
-        </div>
+<h5>Firma:</h5>
+@Html.Action("CompaniesList","Company", new { companyName = Model.Company.CompanyName})
     }
-    <div>
-        Poziom uprawnien: @Html.DisplayFor(model => model.UserRole.RoleName)
-    </div>
-    
-</fieldset>
+<h5>Zlecenia:</h5>
 @Html.Action("OrdersList","Orders", new { isCompany = false , userId = @Model.UserID})
 <p>
     @Html.ActionLink("Dodaj zlecenie dla tego użytkownika", "Create", "Orders", new { isCompany = false, id = @Model.UserID }, null)
     @Html.ActionLink("Edit", "Edit", new { id=Model.UserID }) |
     @Html.ActionLink("Back to List", "Index")
-    @Html.ActionLink("Zmień poziom uprawnień", "ChangeRole", new {id = Model.UserID})
 </p>

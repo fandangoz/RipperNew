@@ -21,7 +21,7 @@ namespace Domain.Concrete
             {
                 if(context.Companies.FirstOrDefault( c => c.CompanyName.ToLower() == company.CompanyName.ToLower())!= null)
                 {
-                    throw (new UserExistInDatabaseException("Podany nazwa firmy jest zajeta"));
+                    throw (new UserExistInDatabaseException("Podana nazwa firmy jest zajeta"));
                 }
                 context.Companies.Add(company);
             }

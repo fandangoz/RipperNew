@@ -1,12 +1,11 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
 <script>
-    $().ready(function () {
+    /*$().ready(function () {
         $("#NazwiskoSzukaj").keyup(ajaxUserFilter)
-      
+
     });
     $().ready(function () {
         $("#LoginSzukaj").keyup(ajaxUserFilter)
@@ -20,38 +19,94 @@
         $("#RoleSelector").change(ajaxUserFilter)
     });
     $().ready(function () {
-        $($("#Poka__nieaktywnych")).change(ajaxUserFilter)
+        $($("#PokazNieaktywnych")).change(ajaxUserFilter)
+    });*/
+    $().ready(function () {
+        $("#submitFilter").click(ajaxUserFilter);
     });
     var ajaxUserFilter = function () {
-            var selectedRole = $("#RoleSelector").val();
-            var sur = $("#NazwiskoSzukaj").val();
-            var nam = $("#ImieSzukaj").val();
-            var login = $("#LoginSzukaj").val();
-            var showInactiveUsers = $("#Poka__nieaktywnych").is(':checked') ? true : false;
+        var selectedRole = $("#RoleSelector").val();
+        var sur = $("#NazwiskoSzukaj").val();
+        var nam = $("#ImieSzukaj").val();
+        var login = $("#LoginSzukaj").val();
+        var showInactiveUsers = $("#PokazNieaktywnych").is(':checked') ? true : false;
         $.ajax({
             url: '@Url.Action("UsersList")',
-            data: { surname: sur == null ? "": sur, name: nam == null ? "":nam, 
+            data: {
+                surname: sur == null ? "" : sur, name: nam == null ? "" : nam,
                 login: login == null ? "" : login, selectedRole: selectedRole, showInactiveUsers: showInactiveUsers
             },
             success: function (data) {
                 $("#users-list").html(data);
             }
         })
-     }
-    </script>
+    }
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker({
+            size: 4
+        });
+    });
+</script>
 
-<select id="RoleSelector">
-    <option value="All">Wszyscy</option>
-    <option value="Klient">Klient</option>
-    <option value="Biuro">Biuro</option>
-    <option value="Admin">Admin</option>
-</select>
 
- <p>Login: @Html.TextBox("LoginSzukaj")</p>
- <p>Nazwisko: @Html.TextBox("NazwiskoSzukaj")</p>
- <p>Imie: @Html.TextBox("ImieSzukaj")</p>
-<p>Pokaż nieaktywnych @Html.CheckBox("Pokaż nieaktywnych")</p>
-<p>@Html.ActionLink("Dodaj użytkownika", "Create")</p>
+
+<form class="form-horizontal">
+    <fieldset>
+        <legend>Filtr użytkowników</legend>
+           <div class="row-fluid">
+        <div class="span3">
+            <div class="control-group">
+                <label class="control-label" for="LoginSzukaj">Login:</label>
+                <div class="controls">
+                    <input id="LoginSzukaj" type="text" class="input-small" placeholder="Login używkownika">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="NazwiskoSzukaj">Nazwisko:</label>
+                <div class="controls">
+                    <input id="NazwiskoSzukaj" type="text" class="input-small" placeholder="Nazwisko używkonika">
+                </div>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="control-group">
+                <label class="control-label" for="ImieSzukaj">Imię:</label>
+                <div class="controls">
+                    <input id="ImieSzukaj" type="text" class="input-small" placeholder="Imię użytkownika">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="RoleSelector">Rola:</label>
+                <div class="controls">
+                    <select id="RoleSelector" class="selectpicker" data-width="auto">
+                        <option value="All">Wszyscy</option>
+                        <option value="Klient">Klient</option>
+                        <option value="Biuro">Biuro</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+                         <div class="control-group">
+                <label class="control-label" for="Pokaznieaktywnych">Pokaż nieaktywnych:</label>
+                <div class="controls">
+                    <input type="checkbox" id="PokazNieaktywnych" />
+                </div>
+            </div>
+            <div class="offset4">
+            <button type="button" id="submitFilter" class="btn btn-small btn-primary" value="Szukaj"><i class="icon-search"></i>Szukaj</button>
+               </div>
+            </div>
+                 
+
+        </div>
+    </fieldset>
+</form>
+
+<div style="float:right;margin:10px"><a href="@Url.Action("Create")" class = "btn btn-primary btn-large"><i class="icon-share-alt" ></i>Dodaj użytkownika</a></div>
+
+<h2>Lista użytkowników</h2>
 <div id="users-list">
     @Html.Action("UsersList")
 

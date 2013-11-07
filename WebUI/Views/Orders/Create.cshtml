@@ -117,83 +117,96 @@
             $("#Name").val("");
         });
     });
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: "yyyy-mm-dd",
 
+        })
+    })
 </script>
-<h2>Create</h2>
-<input id="CustomerRadio" type="radio" name="group1" value="Klient" checked> Klient prywatny<br/>
-<input id="CompanyRadio" type="radio" name="group1" value="Firma" > Firma <br />
-@using (Html.BeginForm()) {
+<h2>Dodaj zlecenie</h2>
+
+<input id="CustomerRadio" type="radio" name="group1" value="Klient" checked>
+Klient prywatny 
+
+<input id="CompanyRadio" type="radio" name="group1" value="Firma">
+Firma 
+@using (Html.BeginHorizontalForm())
+{
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
     
     <fieldset>
-        <legend>Order</legend>
-        <div style="float:left;margin:30px">
-         <div class="editor-label;" >
-            @Html.LabelFor(model => model)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
+        <legend>Dane zlecenia</legend>
+        @Html.HiddenFor(x => x.Order.isCompany)
+        <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span6">
+                
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Name)
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
 
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Order.EquipmentType.EquipmentTypeName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Order.EquipmentType.EquipmentTypeName)
-            @Html.ValidationMessageFor(model => model.Order.EquipmentType.EquipmentTypeName)
-        </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Order.EquipmentType.EquipmentTypeName, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Order.EquipmentType.EquipmentTypeName)
+                        @Html.ValidationMessageFor(model => model.Order.EquipmentType.EquipmentTypeName)
+                    </div>
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Order.receivingDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Order.receivingDate)
-            @Html.ValidationMessageFor(model => model.Order.receivingDate)
-        </div>
-        </div>
-        <div style="float:left;margin:30px">
-      
-                <div class="editor-label">
-            @Html.LabelFor(model => model.Order.Description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Order.Description)
-            @Html.ValidationMessageFor(model => model.Order.Description)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Order.additionalInformation)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Order.additionalInformation)
-            @Html.ValidationMessageFor(model => model.Order.additionalInformation)
-        </div>
-        </div>
-            @Html.HiddenFor(x => x.Order.isCompany)
-        <div>
-    </div>
-        <div style="float:left;margin:30px">
-<table>
-    <thead>
-        <tr>
-            <th>rodzaj naprawy</th>
-            <th>cena</th>
-        </tr>
-    </thead>
-    <tbody>
-        @Html.EditorFor(m => m.reperairTypePrice)
-        </tbody>
-    </table>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Order.receivingDate, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(model => model.Order.receivingDate,"{0:yyyy-MM-dd}", new { @class ="datepicker"})
+                        @Html.ValidationMessageFor(model => model.Order.receivingDate)
+                    </div>
+                </div>
             </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+            <div class="span6">
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Order.Description, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Order.Description, new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.Order.Description)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Order.additionalInformation, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Order.additionalInformation)
+                        @Html.ValidationMessageFor(model => model.Order.additionalInformation)
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+                        <div class="span12"></div>
+        <div class="span6 offset3">
+            <table>
+                <thead>
+                    <tr>
+                        <th>rodzaj naprawy</th>
+                        <th>cena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @Html.EditorFor(m => m.reperairTypePrice)
+                </tbody>
+            </table>
+        </div>
+            <div class="span12"></div>
+        <div class="span6 offset7">
+
+            <input type="submit" value="Dodaj zlecenie" class="btn btn-primary" />
+        </div>
+            </div>
     </fieldset>
 }
 

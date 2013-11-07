@@ -3,13 +3,20 @@
 @{
     ViewBag.Title = "Index";
 }
+<script>
 
-<h2>Index</h2>
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker({
+            size: 4
+        });
+    });
+</script>
+<div style="float:right;margin:10px"><a href="@Url.Action("Create")" class = "btn btn-primary btn-large"><i class="icon-share-alt" ></i>Dodaj nowy sprzęt</a></div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
+<h2>Lista typów sprzętu</h2>
+
+
+<table class="table table-striped table-condensed">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.EquipmentTypeName)
@@ -22,10 +29,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.EquipmentTypeName)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EquipmentTypeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EquipmentTypeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EquipmentTypeID })
+        <td> 
+           <div class="btn-group">
+               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-wrench"></i>  Operacje</a>
+           <ul class="dropdown-menu">
+               <li>
+            @Html.ActionLink("Edycja", "Edit", new { id=item.EquipmentTypeID }) </li>
+            <li>@Html.ActionLink("Szczegóły", "Details", new { id=item.EquipmentTypeID }) </li>
+               </ul>
+               </div>
         </td>
     </tr>
 }

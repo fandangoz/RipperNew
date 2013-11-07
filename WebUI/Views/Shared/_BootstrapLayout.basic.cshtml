@@ -8,15 +8,18 @@
         <title>@ViewBag.Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="@Styles.Url("~/content/css")" rel="stylesheet"/>
+        <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />"
+        <link href="~/Content/datepicker.css" rel="stylesheet" />
                  @RenderSection("head", required: false)
              @Html.Partial("_html5shiv")
-        @* favicons and touch icons go here *@
             <script src="~/Scripts/jquery-2.0.3.js" ></script>
     <script src="~/Scripts/jquery-ui-1.10.3.js" ></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
         <script src="~/Scripts/bootstrap-validation.js"></script>
+        <script src="~/Scripts/bootstrap-select.min.js"></script>
+        <script src="~/Scripts/bootstrap-datepicker.js"></script>
 
     </head>
     <body>

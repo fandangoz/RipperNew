@@ -21,6 +21,7 @@ namespace WebUI.Models
         [Required(ErrorMessage="Podaj nazwę klienta")]
         public string Name { get; set; }
         public List<TypePricePair> reperairTypePrice { get; set; }
+        [Display(Name="Status zlecenia")]
         public SelectList OrderStatusList { set; get; }
         public string selectedStatus { set; get; }
     }

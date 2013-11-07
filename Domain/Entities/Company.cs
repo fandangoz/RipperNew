@@ -9,7 +9,6 @@ namespace Domain.Entities
 {
     public class Company
     {
-        //TODO company and user 1 account or more?
         [Key]
         public int CompanyID { get; set; }
         [Required]

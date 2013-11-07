@@ -30,6 +30,7 @@ namespace WebUI.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, Biuro")]
         public PartialViewResult CompaniesList(int page = 1, string companyName = "", string companyRegon = "")
         {
 
@@ -49,21 +50,25 @@ namespace WebUI.Controllers
             return PartialView(pagedData);
         }
 
+         [Authorize(Roles = "Admin, Biuro")]
         public ViewResult Create()
         {
             return View();
         }
+         [Authorize(Roles = "Admin, Biuro")]
         public ViewResult Edit(int id)
         {
                 Company company = CompaniesRepo.Companies.FirstOrDefault(c => c.CompanyID == id);
                 return View(company);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Edit(Company company)
         {
             return Create(company);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Create(Company company)
         {
             if (!ModelState.IsValid)
@@ -87,6 +92,7 @@ namespace WebUI.Controllers
             return PartialView();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin, Biuro")]
         public JsonResult _addNewCompany(Company company)
         {
             string output = "";
@@ -115,7 +121,7 @@ namespace WebUI.Controllers
             }
             return Json(output, JsonRequestBehavior.AllowGet);
         }
-
+         [Authorize(Roles = "Admin, Biuro")]
         public ActionResult Details(int id = 0)
         {
             Company company = CompaniesRepo.Companies.FirstOrDefault(c => c.CompanyID == id);

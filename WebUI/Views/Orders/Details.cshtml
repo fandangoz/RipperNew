@@ -3,92 +3,59 @@
 @{
     ViewBag.Title = "Details";
 }
+<style type ="text/css">
+    #freelance dt {
+        overflow: visible;
+        width: 220px !important;
+        margin-right: 8px;
+    }
+.dl-horizontal > dd:after {
+  display: table;
+  content: "";
+  clear: both;
 
-<h2>Details</h2>
-
+}
+    </style>
 <fieldset>
-    <legend>Order</legend>
-    <div class ="display-label">
+    <div class="row-fluid">
+    <legend>Szczególy zlecenia</legend>
+    <div class ="span12">
+        <div class="span6">
+    <h4>Dane zleceniodawcy</h4>
         @if (Model.Customer != null)
         {
-            <div>
-            @Html.DisplayNameFor(m => m.Customer.Login)</div>
-            <div>@Html.ActionLink(Model.Customer.Login, "Details", "Users", new { id = Model.Customer.UserID},null)</div>
-            <div>
-                Imię i nazwisko</div>
-            <div>
-            @if (Model.Customer.FullName().Length > 0)
-            {
-                @Model.Customer.FullName()
-            }
-            else
-            {
-                @:brak
-            }</div>
-            <div>@Html.DisplayNameFor(m => m.Customer.Phone)</div>
-            <div>
-            @if(Model.Customer.Phone != null)
-            {
-            @Html.DisplayFor(m => m.Customer.Phone)
-            }
-            else
-                {
-                @:brak
-                }
-                </div>
-            if (Model.Customer.Company != null)
-            {
-                 <div>@Html.DisplayNameFor(m => m.Customer.Company.CompanyName)</div>
-               <div>@Html.ActionLink(Model.Customer.Company.CompanyName,"Details","Company",new { id = Model.Customer.Company.CompanyID}, null )</div>
-            }
+            Html.RenderPartial("_UserDetailsShared", Model.Customer);
         }
+
         @if(Model.Company != null)
         {
-            <div>@Html.DisplayNameFor(m => m.Company.CompanyName)</div>
-            <div>@Html.ActionLink(Model.Company.CompanyName,"Details","Company",new { id = Model.Company.CompanyID},null )</div>
-            <div>@Html.DisplayNameFor(m => m.Company.CompanyRegon)</div>
-            <div>@Html.DisplayFor(m => m.Company.CompanyRegon)</div>
+            Html.RenderPartial("_CompanyDetailsShared", Model.Company);
         }
-    </div>
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.receivingDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.receivingDate)
+            </div>
+        <div class="span6">
+    <h4>Dane zlecenia:</h4>
+    <dl class="dl-horizontal text-overflow" id="freelance">
+         <dt>@Html.DisplayNameFor(model => model.receivingDate)</dt>
+        <dd>@Html.DisplayFor(model => model.receivingDate)</dd>
+
+    <dt>@Html.DisplayNameFor(model => model.endDate)</dt>
+    <dd>@Html.DisplayFor(model => model.endDate)</dd>
+    
+        <dt>@Html.DisplayNameFor(model => model.EquipmentType.EquipmentTypeName)</dt>
+    <dd> @Html.DisplayFor(model => model.EquipmentType.EquipmentTypeName)</dd>
+
+     <dt>@Html.DisplayNameFor(model => model.OrderStatus.OrderStatusName)<//dt>
+    <dd> @Html.DisplayFor(model => model.OrderStatus.OrderStatusName)</dd>
+    <dt>     @Html.DisplayNameFor(model => model.additionalInformation)</dt>
+    <dd>    @Html.DisplayFor(model => model.additionalInformation)</dd>
+    <dt>@Html.DisplayNameFor(model => model.Description)</dt>
+    <dd> @Html.DisplayFor(model => model.Description)</dd>
+        </dl>
+            </div>
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.endDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.endDate)
-    </div>
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.EquipmentType.EquipmentTypeName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EquipmentType.EquipmentTypeName)
-    </div>
-    <div>
-        @Html.DisplayNameFor(model => model.OrderStatus.OrderStatusName)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.OrderStatus.OrderStatusName);
-    </div>
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.additionalInformation)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.additionalInformation)
-    </div>
-    <div>
-        @Html.DisplayNameFor(model => model.Description)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Description)
-    </div>
-    <div>
-        <table>
+    <div class="span6 offset2">
+        <table class="table table-striped table-condensed table-bordered">
             <thead>
                 <tr>
                     <th>
@@ -114,6 +81,7 @@
             </tbody>
         </table>
     </div>
+        </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |

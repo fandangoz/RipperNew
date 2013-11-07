@@ -4,28 +4,25 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginHorizontalForm())
+{
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
     <fieldset>
-        <legend>EquipmentType</legend>
+        <legend>Edycja typów sprzętu</legend>
 
         @Html.HiddenFor(model => model.EquipmentTypeID)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EquipmentTypeName)
-        </div>
-        <div class="editor-field">
+ <div class="control-group">
+            @Html.LabelFor(model => model.EquipmentTypeName, new { @class = "control-label" })
+            <div class="controls">
             @Html.EditorFor(model => model.EquipmentTypeName)
             @Html.ValidationMessageFor(model => model.EquipmentTypeName)
-        </div>
+        </div></div>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
+   <div class="control-group">
+                   <div class="controls">
+            <input type="submit" value="Zapisz zmianę" class="btn btn-primary" />
+       </div></div>
     </fieldset>
 }
 

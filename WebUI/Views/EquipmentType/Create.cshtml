@@ -4,26 +4,26 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginHorizontalForm())
+{
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+
 
     <fieldset>
-        <legend>EquipmentType</legend>
+        <legend>Dodaj nową kategorie sprzętu</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EquipmentTypeName)
-        </div>
-        <div class="editor-field">
+        <div class="control-group">
+            @Html.LabelFor(model => model.EquipmentTypeName, new { @class = "control-label" })
+            <div class="controls">
             @Html.EditorFor(model => model.EquipmentTypeName)
             @Html.ValidationMessageFor(model => model.EquipmentTypeName)
-        </div>
+        </div></div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+   <div class="control-group">
+                   <div class="controls">
+            <input type="submit" value="Dodaj" class="btn btn-primary" />
+       </div></div>
     </fieldset>
 }
 

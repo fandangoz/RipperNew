@@ -16,19 +16,20 @@
     });
 
 </script>
-<h2>Index</h2>
 
-<table>
+@if(Model.Data != null && Model.Data.Count() > 0)
+{
+<table class="table table-striped table-condensed table-bordered">
     <thead>
         <tr>
-            <th> Login</th>
-            <th></th>
+            <th>Login</th>
+            <th>Nazwisko</th>
             <th>Imie</th>
             <th>Numer telefonu</th>
             <th>Adres</th>
             <th>Dodatkowe informacje</th>
-
-            <th>Rola(usunac)</th>
+            <th>Rola</th>
+            <th>Firma</th>
             <th>Poziom uprawnien:</th>
         </tr>
     </thead>
@@ -44,10 +45,28 @@
         <td>@user.Address</td>
         <td>@user.additionalInformation</td>
         <td>@user.UserRole.RoleName</td>
-        <td>@user.UserRole.UserRoleID</td> 
-        <td>@Html.ActionLink("Szczegóły", "Details" , new {id = user.UserID})</td>
-        <td>@Html.ActionLink("Zmień role", "ChangeRole", new{ id = user.UserID})</td>
+        @if(user.Company != null)
+        {
+        <td>@user.Company.CompanyName</td>
+        } else {<td>brak</td>}
+       <td> 
+           <div class="btn-group">
+               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-wrench"></i>  Operacje</a>
+           <ul class="dropdown-menu">
+        @if(user.UserRole.RoleName.Equals("Klient"))
+               {
+         <li>@Html.ActionLink("Dodaj zlecenie", "Create", "Orders", new { isCompany = false, id = user.UserID }, null)</li>
+               }
+        <li>@Html.ActionLink("Szczegóły", "Details" , new {id = user.UserID})</li>
+        @if(User.IsInRole("Admin") || user.UserRole.RoleName.Equals("Klient"))
+               {
+        <li>@Html.ActionLink("Edycja", "Edit" , new {id = user.UserID})</li>
+               }
+        </ul>
+                   </div>
+        </td>
         </tr>
+    
 }
     </tbody>
     <tfoot>
@@ -62,3 +81,7 @@
 
     </tfoot>
 </table>
+}
+else{
+    @:Brak pracowników
+}

@@ -22,7 +22,7 @@ namespace Domain.Entities
         [Display(Name = "Hasło: ")]
         public string Password { get; set; }
         public string PasswordSalt { get; set; }
-        [StringLength(30, MinimumLength = 4, ErrorMessage = "pole - imie użytkownika musi zawierać od 4 do 30 znaków")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "pole - imie użytkownika musi zawierać od 4 do 30 znaków")]
         [Display(Name = "Imie: ")]
         public string Name { set; get; }
         [Display(Name = "Nazwisko: ")]
@@ -37,6 +37,6 @@ namespace Domain.Entities
         [Required]
         [Display(Name = "Aktywny: ")]
         public bool isActive { set; get; }
-        public string FullName() { return Name + Surname; }
+        public string FullName { get { return (Name + Surname).Length > 0 ? Name + Surname : ""; } }
     }
 }

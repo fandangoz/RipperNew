@@ -25,78 +25,107 @@
             }
         });
     })
-    </script>
-<h2>Edit</h2>
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker({
+            size: 4
+        });
+    });
+</script>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginHorizontalForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>User</legend>
+        <legend>Edycja użytkownika</legend>
 
         @Html.HiddenFor(model => model.user.UserID)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user.Login)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user.Login)
-            @Html.ValidationMessageFor(model => model.user.Login)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.user.Login, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.user.Login)
+                @Html.ValidationMessageFor(model => model.user.Login)
+            </div>
         </div>
 
-            @Html.HiddenFor(model => model.user.Password)
 
+        <div class="control-group">
+            @Html.LabelFor(model => model.user.Name, new { @class = "control-label" })
 
-            @Html.HiddenFor(model => model.user.PasswordSalt)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user.Name)
-            @Html.ValidationMessageFor(model => model.user.Name)
+            <div class="controls">
+                @Html.EditorFor(model => model.user.Name)
+                @Html.ValidationMessageFor(model => model.user.Name)
+            </div>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user.Surname)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user.Surname)
-            @Html.ValidationMessageFor(model => model.user.Surname)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user.Address)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user.Address)
-            @Html.ValidationMessageFor(model => model.user.Address)
+        <div class="control-group">
+            @Html.LabelFor(model => model.user.Surname, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.user.Surname)
+                @Html.ValidationMessageFor(model => model.user.Surname)
+            </div>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user.Phone)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user.Phone)
-            @Html.ValidationMessageFor(model => model.user.Phone)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user.additionalInformation)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user.additionalInformation)
-            @Html.ValidationMessageFor(model => model.user.additionalInformation)
+        <div class="control-group">
+            @Html.LabelFor(model => model.user.Address, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.user.Address)
+                @Html.ValidationMessageFor(model => model.user.Address)
+            </div>
         </div>
 
-            @Html.LabelFor(x => x.CompanyName)
-            @Html.EditorFor(x => x.CompanyName)
-            @Html.LabelFor(x => x.user.isActive)
-             @Html.EditorFor(x => x.user.isActive)
-        <p>
-            <input type="submit" value="Save" />
-        </p>
+        <div class="control-group">
+            @Html.LabelFor(model => model.user.Phone, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.user.Phone)
+                @Html.ValidationMessageFor(model => model.user.Phone)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.user.additionalInformation, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.user.additionalInformation)
+                @Html.ValidationMessageFor(model => model.user.additionalInformation)
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(x => x.CompanyName, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(x => x.CompanyName)
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(x => x.user.isActive, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(x => x.user.isActive)
+            </div>
+        </div>
+             <div class="control-group">
+                @Html.LabelFor(x => x.userRoleName, new { @class = "control-label" })
+                             <div class="controls">
+        @if(User.IsInRole("Admin"))
+        {
+
+                @Html.DropDownListFor(model => model.userRoleName, Model.RoleSelectList as SelectList, new { @class = "selectpicker" })
+            @Html.ValidationMessageFor(model => model.userRoleName)
+           
+        }
+        else
+        {
+              @Html.DisplayFor(x => x.userRoleName)
+            @Html.HiddenFor(x => x.userRoleName);
+            @Html.ValidationMessageFor(model => model.userRoleName)
+        }
+                 </div></div>
+             <div class="control-group">
+                                              <div class="controls">
+            <input type="submit" value="Save" class="btn btn-primary"/>
+                                                  </div></div>
+
     </fieldset>
 }
 

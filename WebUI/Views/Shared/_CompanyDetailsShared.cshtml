@@ -1,0 +1,47 @@
+﻿@model Domain.Entities.Company
+<style type ="text/css">
+    #freelance dt {
+        overflow: visible;
+        width: 230px !important;
+        margin-right: 8px;
+    }
+.dl-horizontal > dd:after {
+  display: table;
+  content: "";
+  clear: both;
+
+}
+    </style>
+<fieldset>
+
+    <dl class="dl-horizontal text-overflow" id="freelance">
+        <dt>
+            @Html.DisplayNameFor(x => x.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(x => x.CompanyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x => x.CompanyAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(x => x.CompanyAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x => x.CompanyRegon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(x => x.CompanyRegon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(x => x.AdditionalData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(x => x.AdditionalData)
+        </dd>
+    </dl>
+</fieldset>

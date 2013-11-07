@@ -4,21 +4,29 @@
     ViewBag.Title = "LogIn";
 }
 
-<h2>LogIn</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginHorizontalForm())
+{
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>LoginViewModel</legend>
-        @Html.LabelFor(X => X.Login)
-        @Html.EditorFor(x => x.Login)
-        @Html.LabelFor(x=>x.Password)
-        @Html.EditorFor(x => x.Password)
-        <p>
-            <input type="submit" value="LogIn" />
-        </p>
+        <legend>Logowanie</legend>
+        <div class="control-group">
+            @Html.LabelFor(X => X.Login, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(x => x.Login)
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(x => x.Password, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(x => x.Password)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Zaloguj" class="btn btn-primary" />
+            </div>
+        </div>
     </fieldset>
 }
 
