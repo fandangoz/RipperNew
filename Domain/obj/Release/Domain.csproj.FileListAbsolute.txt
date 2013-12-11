@@ -10,3 +10,4 @@ C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Relea
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Release\Domain.csproj.GenerateResource.Cache
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Release\Domain.dll
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Release\Domain.pdb
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\Domain\obj\Release\Domain.csprojResolveAssemblyReference.cache

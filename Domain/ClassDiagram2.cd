@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Domain.Concrete.EFCompanyRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Concrete\EFCompanyRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Domain.Concrete.EFDbContext" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAAAAAAAACAAAAAAAEYAgAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\EFDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Concrete.EFEquipmentRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAACAAAAAAAAAABAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\EFEquipmentRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="EquipmentTypes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Domain.Concrete.EFOrderRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAIAAAAAA=</HashCode>
+      <FileName>Concrete\EFOrderRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Domain.Concrete.EFOrderStatusesRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\EFOrderStatusesRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Domain.Concrete.EFReperairType" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAABAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\EFReperairType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ReperairTypes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Domain.Concrete.EFReperairTypePrice" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\EFReperairTypePrice.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Domain.Concrete.EFUserRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAgAAAAAAAgAAAAAAAAAAAAAIAIAAAAAAgA=</HashCode>
+      <FileName>Concrete\EFUserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Domain.Concrete.EFUserRoleRepository" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\EFUserRoleRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="UsersRoles" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Domain.Entities.Company">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAQAAAAAIAAAEAAAACABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Company.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Entities.EquipmentType">
+    <Position X="0.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Entities\EquipmentType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Entities.Order" Collapsed="true">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEgABAAAAAiAAAAACAAAAAAAAAAAAAAAAgABQAABAA=</HashCode>
+      <FileName>Entities\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Entities.OrderStatus" Collapsed="true">
+    <Position X="14.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Entities\OrderStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Entities.ReperairType">
+    <Position X="4.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ReperairType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Entities.ReperairTypePrice" Collapsed="true">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABQAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ReperairTypePrice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Entities.User">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAgAAAAAAAAAIAAAAAAABwABAAAAAgCAAAQJAAAAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UserRole" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Domain.Entities.UserRole">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAAAA=</HashCode>
+      <FileName>Entities\UserRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Migrations.Configuration" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Migrations\Configuration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Utilities.DBInitit" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAECAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\DBInitit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Utilities._ItemNotExistInDatabaseException" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\ItemNotExistInDatabaseException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Utilities.UserExistInDatabaseException" Collapsed="true">
+    <Position X="10.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\UserExistInDatabaseException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Domain.Abstract.ICompaniesRepository" Collapsed="true">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Abstract\ICompaniesRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Abstract.IEquipmentTypesRepository">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\IEquipmentTypesRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Abstract.IOrdersRepository" Collapsed="true">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAIAAAAAA=</HashCode>
+      <FileName>Abstract\IOrdersRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Abstract.IOrderStatusesRepository" Collapsed="true">
+    <Position X="14.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\IOrderStatusesRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Abstract.IReperairType" Collapsed="true">
+    <Position X="16" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\IReperairType.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Abstract.IReperairTypePrice" Collapsed="true">
+    <Position X="9" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\IReperairTypePrice.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Abstract.IUserRepository" Collapsed="true">
+    <Position X="11" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAgAAAAAAAgAAAAAAAAAAAAAIAIAAAAAAgA=</HashCode>
+      <FileName>Abstract\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Abstract.IUserRolesRepository" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\IUserRolesRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

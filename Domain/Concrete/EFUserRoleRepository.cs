@@ -14,6 +14,7 @@ namespace Domain.Concrete
         {
             get { return context.UserRoles; }
         }
+    
         public void Add(UserRole userRole)
         {
             context.UserRoles.Add(userRole);

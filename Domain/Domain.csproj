@@ -88,6 +88,10 @@
     <Compile Include="Utilities\UserExistInDatabaseException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\Desktop\diagramKlas.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="DiagramKlasDomeny.cd" />
+    <None Include="DiagramKlasEncje.cd" />
     <None Include="packages.config" />
     <None Include="Scripts\jquery-2.0.3.min.map" />
   </ItemGroup>

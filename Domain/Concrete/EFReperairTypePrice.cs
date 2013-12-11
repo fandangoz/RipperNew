@@ -7,12 +7,22 @@ using Domain.Abstract;
 using Domain.Entities;
 namespace Domain.Concrete
 {
-    public class EFReperairTypePrice :IReperairTypePrice
+    public class EFReperairTypePrice : IReperairTypePrice, Domain.Abstract.IReperairType
     {
         private EFDbContext context = new EFDbContext();
         public IQueryable<ReperairTypePrice> ReperairTypePrice
         {
             get { return context.ReperairTypePrice; }
+        }
+
+        public IQueryable<ReperairType> ReperairTypes
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public void SaveReperairType(ReperairType reperairType)
+        {
+            throw new NotImplementedException();
         }
     }
 }

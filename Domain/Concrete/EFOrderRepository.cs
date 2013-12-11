@@ -32,6 +32,7 @@ namespace Domain.Concrete
                 ReperairTypePrice reperairTypePrice = new ReperairTypePrice { Price = item.Price, ReperairType = context.ReperairTypes.FirstOrDefault(rt => rt.Description == item.ReperairType.Description) };
                 rprList.Add(reperairTypePrice);
                 context.ReperairTypePrice.Add(reperairTypePrice);
+                context.SaveChanges();
                 
             }
             order.ReperairCostList = rprList;

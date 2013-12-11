@@ -294,6 +294,7 @@
     <Content Include="Content\less\alerts.less" />
     <Content Include="Content\less\accordion.less" />
     <Content Include="Content\less\datepicker.less" />
+    <Content Include="DiagramKlasWebUI.cd" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
@@ -329,6 +330,7 @@
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>

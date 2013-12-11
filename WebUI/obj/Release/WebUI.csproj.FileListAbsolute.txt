@@ -36,3 +36,6 @@ C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\bin\System
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\obj\Release\WebUI.csprojResolveAssemblyReference.cache
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\obj\Release\WebUI.dll
 C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\obj\Release\WebUI.pdb
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\bin\Portable.Licensing.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\bin\T4MVCExtensions.dll
+C:\Users\Remigiusz\Documents\Visual Studio 2012\Projects\Ripper\WebUI\bin\Portable.Licensing.xml

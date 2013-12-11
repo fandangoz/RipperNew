@@ -20,6 +20,7 @@ namespace WebUI
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new DBInitit());
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

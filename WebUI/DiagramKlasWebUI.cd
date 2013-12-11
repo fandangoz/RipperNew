@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WebUI.Controllers.AccountController">
+    <Position X="13" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAgAAAAAAIAAAEBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Authentication" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WebUI.Controllers.CompanyController">
+    <Position X="11.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAABBAAAgAAAAAAAIAAABEECAAEAEAAAQAA=</HashCode>
+      <FileName>Controllers\CompanyController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UsersRepo" />
+      <Property Name="CompaniesRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WebUI.Controllers.EquipmentTypeController">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAIAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EquipmentTypeController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="EqRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WebUI.Controllers.HomeController">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Controllers.OrdersController">
+    <Position X="4.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABAABIAAAAAAIAAAAIAECCEACBAEgkAEgAAA=</HashCode>
+      <FileName>Controllers\OrdersController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="CompaniesRepository" />
+      <Field Name="EquipmentTypeRepo" />
+      <Field Name="OrdersRepository" />
+      <Field Name="OrderStatusesRepo" />
+      <Field Name="ReperairPriceRepo" />
+      <Field Name="ReperairTypeRepo" />
+      <Field Name="UsersRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WebUI.Controllers.UsersController">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <AssociationLine Name="repo" Type="Domain.Abstract.IUserRepository" FixedFromPoint="true">
+      <Path>
+        <Point X="10.562" Y="1.75" />
+        <Point X="10.562" Y="0.953" />
+        <Point X="9.25" Y="0.953" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="companiesRepo" Type="Domain.Abstract.ICompaniesRepository">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.116" Y="0.236" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAABAAAAAAEAAAAAIAAAAEACgAEAEAAAAAA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="userRolesRepo" />
+      <Field Name="repo" />
+      <Field Name="companiesRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WebUI.Infrastructure.Concrete.AuthenticateProvider" BaseTypeListCollapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAgEAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Concrete\AuthenticateProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="repo" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Left" Position="0.103" Collapsed="true" />
+  </Class>
+  <Class Name="WebUI.Infrastructure.NinjectControllerFactory" Collapsed="true">
+    <Position X="3.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Infrastructure\NinjectControllerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Infrastructure.Security.RipperRoleProvider" Collapsed="true">
+    <Position X="1.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEEAAwAAAEAAAAAAEABAAAAAAAAAIAAAAEAAEQAAA=</HashCode>
+      <FileName>Infrastructure\Security\RipperRoleProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Models.CompanyUsersViewModel" Collapsed="true">
+    <Position X="3.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\CompanyUsersViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Models.LoginViewModel" Collapsed="true">
+    <Position X="1.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Models.OrderModelView" Collapsed="true">
+    <Position X="1.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAQAAUAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OrderModelView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Models.TypePricePair" Collapsed="true">
+    <Position X="1.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OrderModelView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Models.OrdersIndexModelView" Collapsed="true">
+    <Position X="1.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OrdersIndexModelView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Models.PasswordChangeViewModel" Collapsed="true">
+    <Position X="3.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\PasswordChangeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebUI.Models.UserViewModel" Collapsed="true">
+    <Position X="3.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAACAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAQA=</HashCode>
+      <FileName>Models\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="WebUI.Infrastructure.Abstract.IAuthenticateProvider">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAgAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Abstract\IAuthenticateProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Abstract.IUserRepository" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Abstract.ICompaniesRepository" Collapsed="true">
+    <Position X="8.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Abstract.IEquipmentTypesRepository" Collapsed="true">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Abstract.IUserRolesRepository" Collapsed="true">
+    <Position X="8" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Abstract.IOrdersRepository" Collapsed="true">
+    <Position X="1.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Abstract.IOrderStatusesRepository" Collapsed="true">
+    <Position X="1.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Abstract.IReperairTypePrice" Collapsed="true">
+    <Position X="1.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Abstract.IReperairType" Collapsed="true">
+    <Position X="1.25" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
